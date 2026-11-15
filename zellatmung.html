@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keine Power ohne Nahrung – Zellatmung | Q1 Biologie GK</title>
+<meta name="description" content="Digitale Unterrichtsreihe Zellatmung für die Qualifikationsphase (Grundkurs Biologie, NRW).">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<style>:root{
+  --bg:#f5f6f1; --paper:#ffffff; --ink:#14232a; --muted:#5a6a70; --line:#e1e5df;
+  --brand:#0e7c66; --brand-d:#0a5546; --brand-l:#e3f3ee;
+  --accent:#ef6c33; --accent-l:#fff1e9;
+  --atp:#d9405a; --nadh:#2f6fdb; --fad:#0e9bb0; --co2:#6f7b85; --o2:#c77a1c;
+  --ok:#1f9d55; --bad:#d14343;
+  --r:18px; --shadow:0 1px 2px rgba(20,35,42,.06),0 8px 24px rgba(20,35,42,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{line-height:1.2;letter-spacing:-.015em;margin:0 0 .5em}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:850}
+h2{font-size:1.55rem;font-weight:800}
+h3{font-size:1.18rem;font-weight:750}
+p{margin:0 0 .8em}
+a{color:var(--brand-d)}
+sub,sup{line-height:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* Top bar */
+.top{position:sticky;top:0;z-index:50;background:rgba(245,246,241,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;padding-top:10px;padding-bottom:10px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;color:var(--ink);white-space:nowrap}
+.logo .dot{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--brand),#36b37e);display:grid;place-items:center;color:#fff;font-size:18px}
+.nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;text-decoration:none;color:var(--muted);font-weight:650;font-size:.92rem;padding:7px 12px;border-radius:999px;border:1px solid transparent}
+.nav a:hover{background:#fff;border-color:var(--line)}
+.nav a.on{background:var(--ink);color:#fff}
+.nav a.done:not(.on)::after{content:" ✓";color:var(--ok)}
+
+/* Views */
+.view{display:none;padding:28px 0 70px}
+.view.on{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#0b3d36 0%,#0e7c66 55%,#2fa37f 100%);color:#fff;border-radius:28px;padding:38px 34px;position:relative;overflow:hidden;box-shadow:var(--shadow);margin-bottom:28px}
+.hero::after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%)}
+.hero .kicker{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:750;opacity:.85}
+.hero .lead{font-size:1.15rem;max-width:720px;opacity:.95}
+.hero .q{display:inline-block;margin-top:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:10px 16px;border-radius:14px;font-weight:650}
+.hero.teacher{background:linear-gradient(135deg,#3a1d0e 0%,#b4532a 55%,#ef6c33 100%)}
+.lhero{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.lnum{font-size:4.6rem;font-weight:900;line-height:1;opacity:.95;font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pill{font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25)}
+
+/* Cards & grids */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;box-shadow:var(--shadow);margin-bottom:18px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.week{margin:26px 0 10px;font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.lcard{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s;position:relative}
+.lcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(20,35,42,.1)}
+.lcard .n{font-size:.78rem;font-weight:800;color:var(--brand);text-transform:uppercase;letter-spacing:.1em}
+.lcard h3{margin:.3em 0 .35em}
+.lcard p{color:var(--muted);font-size:.93rem;margin:0}
+.lcard .tick{position:absolute;right:16px;top:16px;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:14px;color:#fff}
+.lcard.done .tick{background:var(--ok);border-color:var(--ok)}
+.lcard.exam{background:linear-gradient(135deg,#fff,#fff6ef);border-color:#f6cdb5}
+.lcard.exam .n{color:var(--accent)}
+
+/* Section headings in lesson */
+.phase{display:flex;align-items:center;gap:12px;margin:34px 0 14px}
+.phase .ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:var(--brand-l)}
+.phase h2{margin:0}
+.phase small{display:block;color:var(--muted);font-weight:600;font-size:.85rem}
+.goals{list-style:none;padding:0;margin:0}
+.goals li{padding-left:30px;position:relative;margin:.35em 0}
+.goals li::before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:7px;background:var(--brand-l);color:var(--brand-d);display:grid;place-items:center;font-size:13px;font-weight:900}
+
+/* Task */
+.task{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-bottom:16px;box-shadow:var(--shadow);border-left:6px solid var(--brand)}
+.task.extra{border-left-color:#9aa6ab}
+.task-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px}
+.task-h .no{font-weight:900;font-size:1.05rem;margin-right:4px}
+.task-h h3{margin:0;flex:1 1 220px}
+.badge{font-size:.74rem;font-weight:800;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.b-op{background:var(--ink);color:#fff}
+.b-afb{background:var(--accent-l);color:#b4532a;border:1px solid #f6cdb5}
+.b-soc{background:#eef2f6;color:#3b4a57}
+.b-extra{background:#eef0f1;color:#5a6a70}
+.b-book{background:#e8f0fb;color:#24539f}
+.task ol,.task ul{padding-left:1.3em;margin:.4em 0 .8em}
+.task li{margin:.25em 0}
+
+/* Notebook box */
+.heft{position:relative;margin:14px 0 4px;padding:14px 16px 14px 54px;border-radius:14px;background:
+ repeating-linear-gradient(#fffdf6 0 27px,#e8e3d3 27px 28px);border:1px solid #ebe3c9}
+.heft::before{content:"📓";position:absolute;left:16px;top:12px;font-size:22px}
+.heft b:first-child{color:#7a5b12}
+
+/* Material */
+.mat{border:1.5px solid #cfd8d4;border-radius:16px;margin:14px 0;overflow:hidden;background:#fbfcfb}
+.mat-h{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#eef3f1;border-bottom:1px solid #d9e2de;font-weight:750}
+.mat-h .m{background:var(--brand);color:#fff;border-radius:8px;padding:2px 8px;font-size:.82rem}
+.mat-b{padding:14px 16px}
+.mat-b p:last-child{margin-bottom:0}
+.src{font-size:.78rem;color:var(--muted);margin-top:6px}
+figure{margin:10px 0}
+figure svg{width:100%;height:auto;display:block}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:6px}
+
+/* Info / Merke */
+.info{border-radius:16px;padding:14px 18px;margin:14px 0;background:var(--brand-l);border:1px solid #c5e6db}
+.info.warn{background:var(--accent-l);border-color:#f6cdb5}
+.info.blue{background:#eaf1fd;border-color:#cbdcf8}
+.info h4{margin:0 0 .3em}
+
+/* Hints */
+details.hint{margin:10px 0;border:1px dashed #b9c6c1;border-radius:12px;background:#fff;padding:0 14px}
+details.hint summary{cursor:pointer;font-weight:700;color:var(--brand-d);padding:9px 0;list-style:none}
+details.hint summary::-webkit-details-marker{display:none}
+details.hint summary::before{content:"💡 "}
+details.hint[open]{padding-bottom:10px}
+
+/* Chips */
+.chip{display:inline-block;font-weight:800;font-size:.85em;padding:1px 8px;border-radius:7px;color:#fff;white-space:nowrap}
+.c-atp{background:var(--atp)} .c-nadh{background:var(--nadh)} .c-fad{background:var(--fad)} .c-co2{background:var(--co2)} .c-o2{background:var(--o2)}
+
+/* Tables */
+table{border-collapse:collapse;width:100%;font-size:.95rem;margin:8px 0}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f1f4f2;font-weight:750}
+.tbl-wrap{overflow-x:auto}
+td.blank{background:repeating-linear-gradient(45deg,#fafafa 0 6px,#f3f3f3 6px 12px);color:transparent}
+
+/* Quiz */
+.quiz .qq{border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:10px 0;background:#fff}
+.quiz .qq p{font-weight:700;margin-bottom:8px}
+.quiz button.opt{display:block;width:100%;text-align:left;background:#f7f9f8;border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;margin:6px 0;font:inherit;font-size:.95rem;cursor:pointer;color:var(--ink)}
+.quiz button.opt:hover{border-color:#b9c6c1}
+.quiz button.opt.right{background:#e7f6ed;border-color:var(--ok)}
+.quiz button.opt.wrong{background:#fdecec;border-color:var(--bad)}
+.quiz .fb{font-size:.9rem;margin-top:6px;display:none}
+.quiz .fb.show{display:block}
+.score{font-weight:800;color:var(--brand-d)}
+
+/* Checker */
+.checker{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}
+.checker .row{display:flex;align-items:center;gap:10px;margin:7px 0;flex-wrap:wrap}
+.checker .row label{flex:1 1 230px}
+.checker input,.checker select{font:inherit;font-size:.95rem;padding:6px 10px;border:1.5px solid #cfd8d4;border-radius:9px;width:110px;background:#fff;color:var(--ink)}
+.checker select{width:170px}
+.checker input.right,.checker select.right{border-color:var(--ok);background:#effaf3}
+.checker input.wrong,.checker select.wrong{border-color:var(--bad);background:#fdf1f1}
+.btn{font:inherit;font-weight:750;font-size:.95rem;border:0;border-radius:11px;padding:9px 16px;cursor:pointer;background:var(--ink);color:#fff}
+.btn.sec{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn.brand{background:var(--brand)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+
+/* Lesson footer */
+.lfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:34px;padding-top:20px;border-top:1px solid var(--line)}
+.lfoot a{text-decoration:none}
+.donebtn.isdone{background:var(--ok)}
+
+/* Schema & animation */
+.schema-ctl{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:10px 0 16px}
+.schema-ctl input[type=range]{flex:1 1 260px;accent-color:var(--brand)}
+.st{transition:opacity .45s}
+.st.off{opacity:0;pointer-events:none}
+.ak-step{opacity:0;transition:opacity .5s}
+.ak-step.on{opacity:1}
+.ak-step.now{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.55}}
+.ak-text{min-height:84px;background:#f4f7f6;border-radius:12px;padding:12px 14px;margin-top:10px}
+.spin{transform-origin:690px 265px;animation:rot 2.2s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.legend-row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+
+/* Glossar */
+dl.gl{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:0;margin:0}
+dl.gl dt,dl.gl dd{padding:10px 12px;border-bottom:1px solid var(--line);margin:0}
+dl.gl dt{font-weight:750}
+.search{width:100%;font:inherit;padding:11px 14px;border:1.5px solid var(--line);border-radius:12px;margin-bottom:12px;background:#fff}
+
+/* Selbsteinschätzung */
+.self td:nth-child(n+2){text-align:center;width:70px}
+.self input{width:20px;height:20px;accent-color:var(--brand)}
+
+/* Teacher specifics */
+.eh{background:#fff8f3;border:1px solid #f6cdb5;border-left:6px solid var(--accent);border-radius:14px;padding:14px 18px;margin:10px 0 18px}
+.eh h4{color:#b4532a;margin:0 0 .4em}
+.eh ul,.eh ol{margin:.3em 0 .6em;padding-left:1.25em}
+.plan th:nth-child(1){width:110px}.plan th:nth-child(2){width:62px}.plan th:nth-child(4){width:150px}
+.pts td:last-child,.pts th:last-child{text-align:center;width:70px}
+.foot{color:var(--muted);font-size:.85rem;text-align:center;padding:30px 0}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .hero{padding:28px 22px;border-radius:22px}
+  .lhero{grid-template-columns:1fr}
+  .lnum{font-size:3.4rem}
+  .card,.task{padding:16px}
+  dl.gl{grid-template-columns:1fr}
+  dl.gl dt{border-bottom:0;padding-bottom:0}
+}
+@media print{
+  .top,.lfoot,.btns,.schema-ctl,.quiz,.nav{display:none!important}
+  .view{display:block!important;padding:0;page-break-after:always}
+  body{background:#fff;font-size:12pt}
+  .card,.task,.hero{box-shadow:none}
+  .hero{color:#000;background:#fff!important;border:2px solid #000}
+  details.hint{display:none}
+  .eh{break-inside:avoid}
+}
+</style>
+</head>
+<body data-store="zellatmung-q1">
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#start"><span class="dot">⚡</span><span>Zellatmung</span></a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="#start">Start</a>
+      <a href="#s1" data-lesson="s1">1 Überblick</a>
+      <a href="#s2" data-lesson="s2">2 Redox</a>
+      <a href="#s3" data-lesson="s3">3 Glykolyse</a>
+      <a href="#s4" data-lesson="s4">4 Citratzyklus</a>
+      <a href="#s5" data-lesson="s5">5 Zwischenbilanz</a>
+      <a href="#s6" data-lesson="s6">6 Atmungskette</a>
+      <a href="#s7" data-lesson="s7">7 Gesamtbilanz</a>
+      <a href="#s8" data-lesson="s8">8 Training</a>
+      <a href="#s9" data-lesson="s9">9 Übungsklausur</a>
+      <a href="#schema">Schema</a>
+      <a href="#glossar">Glossar</a>
+      <a href="#operatoren">Operatoren</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- =========================================================== START -->
+<section class="view" id="start">
+  <div class="hero">
+    <div class="kicker">Biologie · Q1 Grundkurs · Stoffwechselphysiologie</div>
+    <h1>Keine Power ohne Nahrung</h1>
+    <p class="lead">Jede Bewegung, jeder Gedanke, jeder Herzschlag kostet Energie. In dieser Reihe verfolgst du ein Glucose-Molekül auf seinem Weg durch die Zelle und findest heraus, wie daraus nutzbare Energie in Form von ATP wird.</p>
+    <div class="q">❓ Leitfrage: Wie kann die Zelle durch den schrittweisen Abbau von Glucose nutzbare Energie bereitstellen?</div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>So arbeitest du mit dieser Seite</h3>
+      <ul class="goals">
+        <li>Jede Stunde hat eine eigene Seite: <b>Einstieg → Erarbeitung → Sicherung → Selbstcheck</b>.</li>
+        <li>Alles mit 📓 gehört <b>in dein Heft</b>. Deine Notizen sind deine Klausurvorbereitung!</li>
+        <li>💡-Kästen sind <b>gestufte Hilfen</b> – erst selbst versuchen, dann aufklappen.</li>
+        <li>Das <a href="#schema">Übersichtsschema</a> wächst mit jeder Stunde mit. Zeichne es im Heft parallel mit.</li>
+        <li>Buchverweise beziehen sich auf <b>Biologie heute SII</b>, S. 104–115.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Dein Fortschritt</h3>
+      <p id="progress">0 von 9 Stunden erledigt</p>
+      <div style="height:12px;background:#eef1ee;border-radius:99px;overflow:hidden"><div id="pbar" style="height:100%;width:0;background:linear-gradient(90deg,#0e7c66,#36b37e);transition:width .4s"></div></div>
+      <p class="src" style="margin-top:10px">Der Fortschritt wird nur auf diesem Gerät im Browser gespeichert.</p>
+      <h3 style="margin-top:18px">Am Ende der Reihe</h3>
+      <p>📝 <b>Klausur</b> mit Materialauswertung. Stunde 8 und 9 bereiten dich gezielt darauf vor.</p>
+    </div>
+  </div>
+
+  <div class="week">Woche 1 · Grundlagen</div>
+  <div class="grid g3">
+    <a class="lcard" href="#s1" data-lesson="s1"><span class="tick">✓</span><div class="n">Stunde 1</div><h3>Keine Power ohne Nahrung</h3><p>Mitochondrium, ATP und der Überblick über die Zellatmung</p></a>
+    <a class="lcard" href="#s2" data-lesson="s2"><span class="tick">✓</span><div class="n">Stunde 2</div><h3>Elektronen auf Reisen</h3><p>Redoxreaktionen, NAD⁺/FAD und zwei Wege zum ATP</p></a>
+    <a class="lcard" href="#s3" data-lesson="s3"><span class="tick">✓</span><div class="n">Stunde 3</div><h3>Erst investieren, dann kassieren</h3><p>Die Glykolyse im Cytoplasma</p></a>
+  </div>
+  <div class="week">Woche 2 · Ins Mitochondrium</div>
+  <div class="grid g3">
+    <a class="lcard" href="#s4" data-lesson="s4"><span class="tick">✓</span><div class="n">Stunde 4</div><h3>Der Kreisel in der Matrix</h3><p>Oxidative Decarboxylierung und Citratzyklus</p></a>
+    <a class="lcard" href="#s5" data-lesson="s5"><span class="tick">✓</span><div class="n">Stunde 5</div><h3>Wo steckt die Energie?</h3><p>Zwischenbilanz und ein Isotopen-Krimi</p></a>
+    <a class="lcard" href="#s6" data-lesson="s6"><span class="tick">✓</span><div class="n">Stunde 6</div><h3>Kraftwerk an der Membran</h3><p>Atmungskette und chemiosmotisches Modell</p></a>
+  </div>
+  <div class="week">Woche 3 · Bilanz & Klausurtraining</div>
+  <div class="grid g3">
+    <a class="lcard" href="#s7" data-lesson="s7"><span class="tick">✓</span><div class="n">Stunde 7</div><h3>Ohne Sauerstoff geht nichts</h3><p>O₂ als Endakzeptor, Hemmstoffe, Gesamtbilanz</p></a>
+    <a class="lcard exam" href="#s8" data-lesson="s8"><span class="tick">✓</span><div class="n">Stunde 8 · Training</div><h3>Fit für die Materialauswertung</h3><p>Operatoren, 5-Schritte-Methode, Regulation der Zellatmung</p></a>
+    <a class="lcard exam" href="#s9" data-lesson="s9"><span class="tick">✓</span><div class="n">Stunde 9 · Übungsklausur</div><h3>Das gefährliche Schlankheitsmittel</h3><p>Eine komplette Materialauswertung unter Klausurbedingungen</p></a>
+  </div>
+</section>
+
+<!-- =========================================================== STUNDE 1 -->
+<section class="view" id="s1">
+  <div class="hero"><div class="lhero"><div class="lnum">01</div><div>
+    <div class="kicker">Woche 1 · Stunde 1</div>
+    <h1>Keine Power ohne Nahrung</h1>
+    <div class="q">❓ Woher bekommt eine keimende Kartoffel im dunklen Keller ihre Energie?</div>
+    <div class="meta"><span class="pill">Buch S. 104–105</span><span class="pill">45 min</span></div>
+  </div></div></div>
+
+  <div class="card"><h3>Heute lernst du …</h3>
+    <ul class="goals"><li>den Feinbau des Mitochondriums zu beschreiben.</li><li>zu erklären, warum ATP die „Energiewährung“ der Zelle ist.</li><li>die Teilschritte der Zellatmung ihren Kompartimenten zuzuordnen.</li></ul>
+  </div>
+
+  <div class="phase"><div class="ico">🚀</div><div><small>Einstieg</small><h2>Kartoffeln im Keller</h2></div></div>
+  <div class="card">
+    <p>Im Frühjahr bilden Kartoffeln im dunklen Keller lange, bleiche Triebe (Buch S. 104, Abb. 1). Licht für die Fotosynthese gibt es dort nicht – trotzdem wächst die Knolle.</p>
+    <div class="heft"><b>Ins Heft:</b> Stelle zwei Hypothesen auf: Woher stammen <i>Energie</i> und <i>Baustoffe</i> für die neuen Triebe? (Think – Pair – Share)</div>
+  </div>
+
+  <div class="phase"><div class="ico">🔬</div><div><small>Erarbeitung</small><h2>Das Kraftwerk der Zelle</h2></div></div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">1.1</span><h3>Feinbau des Mitochondriums</h3><span class="badge b-op">beschreiben</span><span class="badge b-afb">AFB I</span><span class="badge b-soc">EA</span></div>
+    <figure><svg viewBox="0 0 600 315" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" role="img" aria-label="Schema eines Mitochondriums mit Nummern 1 bis 7"><defs><clipPath id="inClip"><ellipse cx="300" cy="155" rx="232" ry="98"/></clipPath></defs><ellipse cx="300" cy="155" rx="250" ry="115" fill="#fdeee3" stroke="#b4532a" stroke-width="6"/><ellipse cx="300" cy="155" rx="230" ry="96" fill="#f8d3b5" stroke="#b4532a" stroke-width="5"/><g clip-path="url(#inClip)"><rect x="150" y="40" width="26" height="125" rx="13" fill="#fdeee3" stroke="#b4532a" stroke-width="5"/><rect x="270" y="40" width="26" height="125" rx="13" fill="#fdeee3" stroke="#b4532a" stroke-width="5"/><rect x="390" y="40" width="26" height="125" rx="13" fill="#fdeee3" stroke="#b4532a" stroke-width="5"/><rect x="210" y="145" width="26" height="125" rx="13" fill="#fdeee3" stroke="#b4532a" stroke-width="5"/><rect x="330" y="145" width="26" height="125" rx="13" fill="#fdeee3" stroke="#b4532a" stroke-width="5"/><rect x="450" y="145" width="26" height="125" rx="13" fill="#fdeee3" stroke="#b4532a" stroke-width="5"/></g><path d="M262,222 C262,200 306,200 306,222 C306,240 270,236 278,218 C284,206 300,214 294,226" fill="none" stroke="#3b4a57" stroke-width="2.5"/><circle cx="105" cy="140" r="4.5" fill="#3b4a57"/><circle cx="118" cy="162" r="4.5" fill="#3b4a57"/><circle cx="98" cy="172" r="4.5" fill="#3b4a57"/><circle cx="124" cy="132" r="4.5" fill="#3b4a57"/><circle cx="515" cy="150" r="4.5" fill="#3b4a57"/><circle cx="505" cy="172" r="4.5" fill="#3b4a57"/><circle cx="528" cy="166" r="4.5" fill="#3b4a57"/><line x1="540" y1="123" x2="585" y2="85" stroke="#14232a" stroke-width="1.6"/><circle cx="540" cy="123" r="3.5" fill="#14232a"/><circle cx="585" cy="85" r="13" fill="#14232a"/><text x="585" y="90" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">1</text><line x1="72" y1="167" x2="20" y2="205" stroke="#14232a" stroke-width="1.6"/><circle cx="72" cy="167" r="3.5" fill="#14232a"/><circle cx="20" cy="205" r="13" fill="#14232a"/><text x="20" y="210" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">2</text><line x1="163" y1="60" x2="163" y2="16" stroke="#14232a" stroke-width="1.6"/><circle cx="163" cy="60" r="3.5" fill="#14232a"/><circle cx="163" cy="16" r="13" fill="#14232a"/><text x="163" y="21" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">3</text><line x1="440" y1="68" x2="478" y2="16" stroke="#14232a" stroke-width="1.6"/><circle cx="440" cy="68" r="3.5" fill="#14232a"/><circle cx="478" cy="16" r="13" fill="#14232a"/><text x="478" y="21" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">4</text><line x1="345" y1="115" x2="345" y2="16" stroke="#14232a" stroke-width="1.6"/><circle cx="345" cy="115" r="3.5" fill="#14232a"/><circle cx="345" cy="16" r="13" fill="#14232a"/><text x="345" y="21" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">5</text><line x1="284" y1="222" x2="284" y2="300" stroke="#14232a" stroke-width="1.6"/><circle cx="284" cy="222" r="3.5" fill="#14232a"/><circle cx="284" cy="300" r="13" fill="#14232a"/><text x="284" y="305" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">6</text><line x1="110" y1="150" x2="20" y2="120" stroke="#14232a" stroke-width="1.6"/><circle cx="110" cy="150" r="3.5" fill="#14232a"/><circle cx="20" cy="120" r="13" fill="#14232a"/><text x="20" y="125" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">7</text></svg><figcaption>Abb. 1.1: Schematischer Längsschnitt durch ein Mitochondrium</figcaption></figure>
+    <ol><li>Benenne die Strukturen 1–7.</li><li>Beschreibe zu jeder Struktur kurz ihre Funktion bzw. Besonderheit.</li></ol>
+    <details class="hint"><summary>Hilfe: Begriffe</summary><p>äußere Mitochondrienmembran · innere Mitochondrienmembran · Crista (Einstülpung) · Intermembranraum · Matrix · mitochondriale DNA (ringförmig) · Ribosomen</p></details>
+    <details class="hint"><summary>Hilfe: Warum so viele Falten?</summary><p>Überlege, was eine größere Membranfläche für Proteine bedeutet, die <i>in</i> der Membran sitzen.</p></details>
+    <div class="heft"><b>Ins Heft:</b> Skizze des Mitochondriums (ca. ½ Seite) mit Beschriftung und einer Tabelle „Struktur | Funktion“.</div>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">1.2</span><h3>ATP – die Energiewährung</h3><span class="badge b-op">erklären</span><span class="badge b-afb">AFB I–II</span><span class="badge b-soc">PA</span></div>
+    <div class="mat"><div class="mat-h"><span class="m">M 1.2</span> ATP – Energie zum Mitnehmen</div><div class="mat-b">
+      <p>Adenosintriphosphat (ATP) besteht aus der Base Adenin, dem Zucker Ribose und drei Phosphatgruppen. Wird die endständige Phosphatgruppe abgespalten, entstehen ADP und anorganisches Phosphat (Pᵢ). Dabei werden unter Zellbedingungen etwa <b>30,6 kJ/mol</b> frei.</p>
+      <p>Diese Energie treibt energieverbrauchende Prozesse an: Muskelkontraktion, aktiven Transport, den Aufbau von Proteinen und DNA. Umgekehrt wird bei abbauenden Prozessen freiwerdende Energie genutzt, um ADP + Pᵢ wieder zu ATP zu verbinden.</p>
+      <p>Eine Zelle speichert nur sehr wenig ATP – es reicht für Sekunden bis wenige Minuten. Ein Mensch setzt aber pro Tag etwa so viel ATP um, wie er wiegt. Jedes ATP-Molekül wird also ständig recycelt.</p>
+    </div></div>
+    <ol><li>Erkläre mithilfe einer beschrifteten Kreislauf-Skizze, wie ATP energieliefernde und energieverbrauchende Prozesse miteinander verbindet.</li><li>Erkläre, warum ATP treffend als „Energiewährung“ – und nicht als „Energiespeicher“ – bezeichnet wird.</li></ol>
+    <details class="hint"><summary>Hilfe zur Skizze</summary><p>Zeichne einen Kreis: oben ATP, unten ADP + Pᵢ. Links ein Pfeil „Energie aus dem Glucoseabbau“, rechts ein Pfeil „Energie für Arbeit in der Zelle“.</p></details>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">1.3</span><h3>Zellatmung im Überblick</h3><span class="badge b-op">zuordnen</span><span class="badge b-afb">AFB I</span><span class="badge b-book">Buch S. 104–105</span></div>
+    <p>Lies im Buch die Abschnitte „Stoffwechselweg Zellatmung“ und „Überblick Zellatmung“ und betrachte Abb. 2 auf S. 105.</p>
+    <ol><li>Notiere die Bruttogleichung der Zellatmung.</li><li>Übertrage die Tabelle ins Heft und fülle sie aus.</li></ol>
+    <div class="tbl-wrap"><table><tr><th>Teilschritt</th><th>Ort in der Zelle</th><th>Ausgangsstoff(e)</th><th>Produkt(e)</th></tr>
+      <tr><td>Glykolyse</td><td class="blank">.</td><td class="blank">.</td><td class="blank">.</td></tr>
+      <tr><td>oxidative Decarboxylierung</td><td class="blank">.</td><td class="blank">.</td><td class="blank">.</td></tr>
+      <tr><td>Citratzyklus</td><td class="blank">.</td><td class="blank">.</td><td class="blank">.</td></tr>
+      <tr><td>Atmungskette</td><td class="blank">.</td><td class="blank">.</td><td class="blank">.</td></tr></table></div>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">1.4</span><h3>Wo findet was statt?</h3><span class="badge b-op">erklären</span><span class="badge b-afb">AFB II</span><span class="badge b-book">Buch S. 105, Material A</span></div>
+    <p>Bearbeite im Buch Material A „Versuche zur Lokalisation der Stoffwechselketten der Zellatmung“, <b>Aufgabe 1</b>: Erkläre die Versuchsergebnisse.</p>
+    <details class="hint"><summary>Hilfe: So gehst du vor</summary><p>Ein sinkender O₂-Gehalt bedeutet: Hier läuft die Zellatmung bis zum Ende ab. Vergleiche die vier Ansätze paarweise. Was fehlt jeweils, wenn kein O₂ verbraucht wird?</p></details>
+  </div>
+
+  <div class="phase"><div class="ico">📓</div><div><small>Sicherung</small><h2>Dein Übersichtsschema startet</h2></div></div>
+  <div class="card">
+    <p>Lege im Heft eine <b>Doppelseite</b> für das Übersichtsschema an. Zeichne eine Zelle mit Cytoplasma und ein großes Mitochondrium (Matrix, innere Membran, Intermembranraum) und schreibe die Bruttogleichung darunter. Ab jetzt ergänzt du das Schema in jeder Stunde.</p>
+    <a class="btn brand" href="#schema" data-stage-link="1" style="text-decoration:none;display:inline-block">Schema-Vorlage (Stufe 1) ansehen →</a>
+  </div>
+
+  <div class="phase"><div class="ico">✅</div><div><small>Selbstcheck</small><h2>Hast du's drauf?</h2></div></div>
+  <div class="quiz" data-quiz="s1"></div>
+
+  <div class="lfoot"><a class="btn sec" href="#start">← Übersicht</a><button class="btn donebtn" data-id="s1" type="button">Stunde als erledigt markieren</button><a class="btn" href="#s2">Stunde 2 →</a></div>
+</section>
+
+<!-- =========================================================== STUNDE 2 -->
+<section class="view" id="s2">
+  <div class="hero"><div class="lhero"><div class="lnum">02</div><div>
+    <div class="kicker">Woche 1 · Stunde 2</div>
+    <h1>Elektronen auf Reisen</h1>
+    <div class="q">❓ Warum „verbrennt“ die Zelle Glucose nicht einfach wie ein Feuer?</div>
+    <div class="meta"><span class="pill">Buch S. 105</span><span class="pill">45 min</span></div>
+  </div></div></div>
+
+  <div class="card"><h3>Heute lernst du …</h3>
+    <ul class="goals"><li>Oxidation und Reduktion als Elektronenübertragung zu beschreiben.</li><li>die Rolle von NAD⁺ und FAD als Elektronenüberträger zu erklären.</li><li>Substratkettenphosphorylierung und oxidative Phosphorylierung zu unterscheiden.</li></ul>
+  </div>
+
+  <div class="phase"><div class="ico">🚀</div><div><small>Einstieg</small><h2>Der brüllende Gummibär</h2></div></div>
+  <div class="card">
+    <p>Deine Lehrkraft zeigt ein Video: Ein Gummibärchen wird in geschmolzenes Kaliumchlorat gegeben. Es gibt eine heftige Reaktion mit Flamme, Licht und lautem Zischen. Der Zucker im Gummibärchen wird dabei – wie in deinen Zellen – zu CO₂ und H₂O oxidiert.</p>
+    <div class="heft"><b>Ins Heft:</b> Gleiche Ausgangsstoffe, gleiche Produkte, gleiche Energiemenge – was muss in der Zelle anders ablaufen, damit sie nicht „verbrennt“? Notiere deine Vermutung.</div>
+  </div>
+
+  <div class="phase"><div class="ico">🔬</div><div><small>Erarbeitung</small><h2>Redox – Elektronen wechseln den Besitzer</h2></div></div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">2.1</span><h3>Wer wird oxidiert, wer reduziert?</h3><span class="badge b-op">bestimmen &amp; erklären</span><span class="badge b-afb">AFB I–II</span><span class="badge b-soc">EA</span></div>
+    <div class="mat"><div class="mat-h"><span class="m">M 2.1</span> Redoxreaktionen in der Biologie</div><div class="mat-b">
+      <p><b>Oxidation</b> ist die Abgabe von Elektronen, <b>Reduktion</b> die Aufnahme von Elektronen. Beide Vorgänge laufen immer gekoppelt ab: Der Elektronendonator wird oxidiert, der Elektronenakzeptor reduziert.</p>
+      <p>In Stoffwechselreaktionen werden Elektronen meist zusammen mit Protonen übertragen – also als Wasserstoff (H = H⁺ + e⁻). Die Abgabe von Wasserstoff (<b>Dehydrierung</b>) ist deshalb eine Oxidation.</p>
+      <p>Mit <b>Oxidationszahlen</b> kann man verfolgen, wohin Elektronen wandern: Steigt die Oxidationszahl eines Atoms, wurde es oxidiert; sinkt sie, wurde es reduziert. Regeln: H meist +I, O meist −II, Elemente (z. B. O₂) 0, die Summe in einem Molekül ist 0.</p>
+    </div></div>
+    <ol><li>Bestimme die Oxidationszahlen von C in Glucose und CO₂ sowie von O in O₂ und H₂O (Tipp: Für C in Glucose genügt der Durchschnittswert).</li><li>Gib an, welcher Stoff bei der Zellatmung oxidiert und welcher reduziert wird. Begründe.</li></ol>
+    <div class="checker">
+      <div class="row"><label>Oxidationszahl von C in Glucose (C₆H₁₂O₆)</label><input data-answer="0|±0|+0" placeholder="?"></div>
+      <div class="row"><label>Oxidationszahl von C in CO₂</label><input data-answer="+4|4|+iv|iv" placeholder="?"></div>
+      <div class="row"><label>Oxidationszahl von O in O₂</label><input data-answer="0|±0|+0" placeholder="?"></div>
+      <div class="row"><label>Oxidationszahl von O in H₂O</label><input data-answer="-2|−2|-ii|−ii" placeholder="?"></div>
+      <div class="btns"><button class="btn check-btn" type="button">Prüfen</button><button class="btn sec reset-btn" type="button">Zurücksetzen</button><span class="check-out"></span></div>
+    </div>
+    <details class="hint"><summary>Hilfe: Glucose rechnen</summary><p>6 · x + 12 · (+1) + 6 · (−2) = 0 → x = ?</p></details>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">2.2</span><h3>NAD⁺ und FAD – die Elektronen-Taxis</h3><span class="badge b-op">erklären</span><span class="badge b-afb">AFB II</span><span class="badge b-soc">PA</span></div>
+    <div class="mat"><div class="mat-h"><span class="m">M 2.2</span> Coenzyme als Elektronenüberträger</div><div class="mat-b">
+      <p>Beim Glucoseabbau werden Elektronen und Protonen nicht direkt auf Sauerstoff übertragen, sondern zunächst auf Coenzyme:</p>
+      <p style="text-align:center"><span class="chip c-nadh">NAD⁺</span> + 2 e⁻ + 2 H⁺ → <span class="chip c-nadh">NADH + H⁺</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="chip c-fad">FAD</span> + 2 e⁻ + 2 H⁺ → <span class="chip c-fad">FADH₂</span></p>
+      <p>Die beladenen Formen heißen <b>Reduktionsäquivalente</b>. Sie transportieren energiereiche Elektronen zur Atmungskette und geben sie dort wieder ab. In jeder Zelle gibt es nur eine kleine Menge NAD⁺ und FAD.</p>
+    </div></div>
+    <ol><li>Erkläre den Begriff „Reduktionsäquivalent“.</li><li>Erkläre, warum NADH + H⁺ ständig wieder zu NAD⁺ oxidiert werden muss.</li><li>NAD⁺ wird oft mit einem Taxi verglichen. Erläutere, was an diesem Vergleich passt und wo er an seine Grenzen stößt.</li></ol>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">2.3</span><h3>Zwei Wege zum ATP</h3><span class="badge b-op">vergleichen</span><span class="badge b-afb">AFB II</span><span class="badge b-book">Buch S. 105 „ATP-Gewinn“</span></div>
+    <p>Vergleiche Substratkettenphosphorylierung und oxidative Phosphorylierung in einer Tabelle (Kriterien: Prinzip, Ort, Beteiligung von O₂, Anteil am ATP-Gewinn).</p>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">2.4</span><h3>Zurück zum Gummibär</h3><span class="badge b-op">erläutern</span><span class="badge b-afb">AFB II</span></div>
+    <p>Erläutere, warum die schrittweise Oxidation der Glucose über viele Zwischenschritte für die Zelle vorteilhaft ist. Beziehe dich auf deine Vermutung aus dem Einstieg.</p>
+  </div>
+
+  <div class="phase"><div class="ico">📓</div><div><small>Sicherung</small><h2>Merkkasten &amp; Legende</h2></div></div>
+  <div class="card">
+    <div class="info"><h4>Merke</h4>Oxidation = Elektronenabgabe · Reduktion = Elektronenaufnahme · immer gekoppelt. NAD⁺ und FAD nehmen beim Glucoseabbau Elektronen und Protonen auf (→ NADH + H⁺, FADH₂) und bringen sie zur Atmungskette.</div>
+    <p>Ergänze in deinem Übersichtsschema eine Legende mit festen Farben (wie im Buch):</p>
+    <div class="legend-row"><span class="chip c-atp">ATP</span><span class="chip c-nadh">NADH+H⁺</span><span class="chip c-fad">FADH₂</span><span class="chip c-co2">CO₂</span></div>
+    <a class="btn brand" href="#schema" data-stage-link="2" style="text-decoration:none;display:inline-block;margin-top:8px">Schema Stufe 2 ansehen →</a>
+  </div>
+
+  <div class="phase"><div class="ico">✅</div><div><small>Selbstcheck</small><h2>Hast du's drauf?</h2></div></div>
+  <div class="quiz" data-quiz="s2"></div>
+  <div class="lfoot"><a class="btn sec" href="#s1">← Stunde 1</a><button class="btn donebtn" data-id="s2" type="button">Stunde als erledigt markieren</button><a class="btn" href="#s3">Stunde 3 →</a></div>
+</section>
+
+<!-- =========================================================== STUNDE 3 -->
+<section class="view" id="s3">
+  <div class="hero"><div class="lhero"><div class="lnum">03</div><div>
+    <div class="kicker">Woche 1 · Stunde 3</div>
+    <h1>Erst investieren, dann kassieren</h1>
+    <div class="q">❓ Wie gewinnen rote Blutzellen ganz ohne Mitochondrien Energie?</div>
+    <div class="meta"><span class="pill">Buch S. 106–107</span><span class="pill">45 min</span></div>
+  </div></div></div>
+
+  <div class="card"><h3>Heute lernst du …</h3>
+    <ul class="goals"><li>die Glykolyse als ersten Schritt des Glucoseabbaus zu beschreiben.</li><li>die Bildung von ATP und NADH + H⁺ in der Glykolyse zu bilanzieren.</li><li>Versuchsergebnisse zur Lokalisation der Glykolyse zu erklären.</li></ul>
+  </div>
+
+  <div class="phase"><div class="ico">🚀</div><div><small>Einstieg</small><h2>Rote Blutzellen</h2></div></div>
+  <div class="card">
+    <p>Rote Blutzellen (Erythrozyten, Buch S. 106 Abb. 1) haben keinen Zellkern und keine Mitochondrien. Trotzdem pumpen sie rund 120 Tage lang Ionen durch ihre Membran – und das kostet ATP.</p>
+    <div class="heft"><b>Ins Heft:</b> Welcher Teil der Zellatmung kann in Erythrozyten überhaupt ablaufen? Begründe mit deinem Übersichtsschema.</div>
+  </div>
+
+  <div class="phase"><div class="ico">🔬</div><div><small>Erarbeitung</small><h2>Die Glykolyse</h2></div></div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">3.1</span><h3>Zwei Phasen der Glykolyse</h3><span class="badge b-op">beschreiben</span><span class="badge b-afb">AFB I</span><span class="badge b-book">Buch S. 106–107, Abb. 2</span></div>
+    <p>Beschreibe den Ablauf der Glykolyse in den beiden Abschnitten <b>Energieinvestition</b> und <b>Energiefreisetzung</b>. Stelle dazu ein <b>C-Körper-Schema</b> auf (C₆ → 2 C₃), in dem du markierst, wo ATP verbraucht, ATP gebildet und NADH + H⁺ gebildet wird.</p>
+    <div class="info blue"><b>Wichtig für die Klausur:</b> Strukturformeln der Zwischenprodukte musst du <u>nicht</u> auswendig können. Diese Namen solltest du kennen: Glucose, Fructose-1,6-bisphosphat, Glycerinaldehyd-3-phosphat, Pyruvat.</div>
+    <details class="hint"><summary>Hilfe: Gerüst für das C-Körper-Schema</summary><p>C₆ (Glucose) → [− ATP] → C₆-P → [− ATP] → P-C₆-P → Spaltung → 2 × C₃-P → [+ NADH + H⁺, + ATP, + ATP je C₃] → 2 × C₃ (Pyruvat)</p></details>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">3.2</span><h3>Bilanz-Check Glykolyse</h3><span class="badge b-op">bilanzieren</span><span class="badge b-afb">AFB II</span><span class="badge b-soc">EA</span></div>
+    <p>Fülle die Bilanz <b>pro Glucose-Molekül</b> aus und prüfe dich selbst. Notiere dann die Bilanzgleichung der Glykolyse im Heft.</p>
+    <div class="checker">
+      <div class="row"><label>ATP verbraucht (Energieinvestition)</label><input data-answer="2" inputmode="numeric"></div>
+      <div class="row"><label>ATP gebildet (Energiefreisetzung)</label><input data-answer="4" inputmode="numeric"></div>
+      <div class="row"><label>ATP netto</label><input data-answer="2" inputmode="numeric"></div>
+      <div class="row"><label>gebildete NADH + H⁺</label><input data-answer="2" inputmode="numeric"></div>
+      <div class="row"><label>gebildete Pyruvat-Moleküle</label><input data-answer="2" inputmode="numeric"></div>
+      <div class="row"><label>verbrauchte O₂-Moleküle</label><input data-answer="0" inputmode="numeric"></div>
+      <div class="btns"><button class="btn check-btn" type="button">Prüfen</button><button class="btn sec reset-btn" type="button">Zurücksetzen</button><span class="check-out"></span></div>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">3.3</span><h3>Wo läuft die Glykolyse ab?</h3><span class="badge b-op">erklären · begründen</span><span class="badge b-afb">AFB II</span><span class="badge b-book">Buch S. 106, Material A</span></div>
+    <p>Bearbeite im Buch Material A „Lokalisation der Glykolyse“, <b>Aufgaben 1 und 2</b>.</p>
+    <details class="hint"><summary>Hilfe</summary><p>Vergleiche die Ansätze mit Glucose und mit Pyruvat. Welchen Stoff können isolierte Mitochondrien verwerten, welchen nicht? Und: Wird bei der Glykolyse selbst Sauerstoff verbraucht?</p></details>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">3.4</span><h3>Zurück zu den Erythrozyten</h3><span class="badge b-op">erläutern</span><span class="badge b-afb">AFB II–III</span><span class="badge b-soc">PA</span></div>
+    <p>Erläutere, wie Erythrozyten ATP gewinnen. Erkläre außerdem, welches Problem nach kurzer Zeit entstehen würde, wenn das gebildete NADH + H⁺ nicht wieder zu NAD⁺ oxidiert würde.</p>
+    <details class="hint"><summary>Ausblick</summary><p>Erythrozyten wandeln Pyruvat in Milchsäure (Lactat) um. Dabei wird NADH + H⁺ wieder zu NAD⁺ oxidiert. Diesen Vorgang nennt man Milchsäuregärung.</p></details>
+  </div>
+
+  <div class="phase"><div class="ico">📓</div><div><small>Sicherung</small><h2>Schema ergänzen</h2></div></div>
+  <div class="card">
+    <div class="info"><h4>Merke</h4><b>Glykolyse</b> (Cytoplasma, ohne O₂): Glucose + 2 NAD⁺ + 2 ADP + 2 Pᵢ → 2 Pyruvat + 2 NADH + 2 H⁺ + 2 ATP (+ 2 H₂O). Netto 2 ATP durch Substratkettenphosphorylierung.</div>
+    <a class="btn brand" href="#schema" data-stage-link="3" style="text-decoration:none;display:inline-block">Schema Stufe 3 ansehen →</a>
+  </div>
+
+  <div class="phase"><div class="ico">✅</div><div><small>Selbstcheck</small><h2>Hast du's drauf?</h2></div></div>
+  <div class="quiz" data-quiz="s3"></div>
+  <div class="lfoot"><a class="btn sec" href="#s2">← Stunde 2</a><button class="btn donebtn" data-id="s3" type="button">Stunde als erledigt markieren</button><a class="btn" href="#s4">Stunde 4 →</a></div>
+</section>
+
+<!-- =========================================================== STUNDE 4 -->
+<section class="view" id="s4">
+  <div class="hero"><div class="lhero"><div class="lnum">04</div><div>
+    <div class="kicker">Woche 2 · Stunde 4</div>
+    <h1>Der Kreisel in der Matrix</h1>
+    <div class="q">❓ Was passiert mit dem Pyruvat im Mitochondrium?</div>
+    <div class="meta"><span class="pill">Buch S. 108–109</span><span class="pill">45 min</span></div>
+  </div></div></div>
+
+  <div class="card"><h3>Heute lernst du …</h3>
+    <ul class="goals"><li>die oxidative Decarboxylierung von Pyruvat zu beschreiben.</li><li>den Citratzyklus als C-Körper-Schema darzustellen.</li><li>zu bilanzieren, wo CO₂, NADH + H⁺, FADH₂ und ATP entstehen.</li></ul>
+  </div>
+
+  <div class="phase"><div class="ico">🚀</div><div><small>Einstieg</small><h2>Verrückt wie ein Hutmacher</h2></div></div>
+  <div class="card">
+    <p>Im 19. Jahrhundert verwendeten Hutmacher Quecksilbersalze, um Filz herzustellen. Viele von ihnen litten an Zittern, Verwirrtheit und Stimmungsschwankungen. Daher kommt der englische Ausdruck <i>„mad as a hatter“</i> – und der verrückte Hutmacher aus „Alice im Wunderland“. Heute sind quecksilberhaltige Batterien verboten (Buch S. 108).</p>
+    <div class="heft"><b>Ins Heft:</b> Warum zeigen sich die Vergiftungssymptome gerade im Nervensystem? Notiere eine erste Vermutung – am Ende der Stunde kannst du sie prüfen.</div>
+  </div>
+
+  <div class="phase"><div class="ico">🔬</div><div><small>Erarbeitung</small><h2>Vom Pyruvat zum CO₂</h2></div></div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">4.1</span><h3>Die Brücke: oxidative Decarboxylierung</h3><span class="badge b-op">beschreiben</span><span class="badge b-afb">AFB I</span><span class="badge b-book">Buch S. 108</span></div>
+    <p>Beschreibe die oxidative Decarboxylierung von Pyruvat: Ort, beteiligter Enzymkomplex, Ausgangsstoff, Produkte. Erkläre den Namen: Was bedeutet „oxidativ“, was „Decarboxylierung“?</p>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">4.2</span><h3>Der Citratzyklus als C-Körper-Schema</h3><span class="badge b-op">darstellen</span><span class="badge b-afb">AFB I–II</span><span class="badge b-book">Buch S. 109, Abb. 2A/B</span></div>
+    <p>Stelle den Citratzyklus als Kreis mit C-Körpern dar (C₂ + C₄ → C₆ → C₅ → C₄ → … → C₄). Markiere mit den Farben deiner Legende, wo <span class="chip c-co2">CO₂</span> abgespalten wird und wo <span class="chip c-nadh">NADH+H⁺</span>, <span class="chip c-fad">FADH₂</span> und <span class="chip c-atp">ATP</span> entstehen.</p>
+    <details class="hint"><summary>Hilfe: Diese Namen reichen</summary><p>Acetyl-CoA (C₂) · Oxalacetat (C₄) · Citrat (C₆) · α-Ketoglutarat (C₅) · Succinat (C₄) · Fumarat (C₄) · Malat (C₄)</p></details>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">4.3</span><h3>Bilanz-Check: ox. Decarboxylierung + Citratzyklus</h3><span class="badge b-op">bilanzieren</span><span class="badge b-afb">AFB II</span></div>
+    <p>Denk daran: Aus einer Glucose entstehen <b>zwei</b> Pyruvat-Moleküle!</p>
+    <div class="checker">
+      <div class="row"><label><b>pro Pyruvat:</b> CO₂ insgesamt</label><input data-answer="3" inputmode="numeric"></div>
+      <div class="row"><label><b>pro Pyruvat:</b> NADH + H⁺ insgesamt</label><input data-answer="4" inputmode="numeric"></div>
+      <div class="row"><label><b>pro Glucose:</b> CO₂</label><input data-answer="6" inputmode="numeric"></div>
+      <div class="row"><label><b>pro Glucose:</b> NADH + H⁺</label><input data-answer="8" inputmode="numeric"></div>
+      <div class="row"><label><b>pro Glucose:</b> FADH₂</label><input data-answer="2" inputmode="numeric"></div>
+      <div class="row"><label><b>pro Glucose:</b> ATP</label><input data-answer="2" inputmode="numeric"></div>
+      <div class="btns"><button class="btn check-btn" type="button">Prüfen</button><button class="btn sec reset-btn" type="button">Zurücksetzen</button><span class="check-out"></span></div>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">4.4</span><h3>Quecksilber und die Nerven</h3><span class="badge b-op">erklären</span><span class="badge b-afb">AFB II</span><span class="badge b-book">Buch S. 108</span></div>
+    <p>Quecksilberverbindungen hemmen den Pyruvatdehydrogenase-Komplex. Erkläre, warum dadurch besonders Nervenzellen geschädigt werden. Prüfe deine Vermutung aus dem Einstieg.</p>
+  </div>
+
+  <div class="task extra">
+    <div class="task-h"><span class="no">4.5</span><h3>Lokalisation des Citratzyklus</h3><span class="badge b-extra">Zusatz / Hausaufgabe</span><span class="badge b-op">erklären</span><span class="badge b-book">Buch S. 108, Material A</span></div>
+    <p>Bearbeite Material A „Lokalisation des Citratzyklus“, Aufgabe 1.</p>
+  </div>
+
+  <div class="phase"><div class="ico">📓</div><div><small>Sicherung</small><h2>Schema ergänzen</h2></div></div>
+  <div class="card">
+    <div class="info"><h4>Merke</h4>In der <b>Matrix</b> wird Pyruvat vollständig zu CO₂ abgebaut. Dabei entstehen pro Glucose 6 CO₂, 8 NADH + H⁺, 2 FADH₂ und nur 2 ATP. Der Citratzyklus ist vor allem eine <b>„Fabrik für Reduktionsäquivalente“</b>.</div>
+    <a class="btn brand" href="#schema" data-stage-link="4" style="text-decoration:none;display:inline-block">Schema Stufe 4 ansehen →</a>
+  </div>
+
+  <div class="phase"><div class="ico">✅</div><div><small>Selbstcheck</small><h2>Hast du's drauf?</h2></div></div>
+  <div class="quiz" data-quiz="s4"></div>
+  <div class="lfoot"><a class="btn sec" href="#s3">← Stunde 3</a><button class="btn donebtn" data-id="s4" type="button">Stunde als erledigt markieren</button><a class="btn" href="#s5">Stunde 5 →</a></div>
+</section>
+
+<!-- =========================================================== STUNDE 5 -->
+<section class="view" id="s5">
+  <div class="hero"><div class="lhero"><div class="lnum">05</div><div>
+    <div class="kicker">Woche 2 · Stunde 5</div>
+    <h1>Wo steckt die Energie?</h1>
+    <div class="q">❓ Glucose ist komplett zu CO₂ abgebaut – aber wo sind Sauerstoff und Energie geblieben?</div>
+    <div class="meta"><span class="pill">Buch S. 104–109</span><span class="pill">45 min</span></div>
+  </div></div></div>
+
+  <div class="card"><h3>Heute lernst du …</h3>
+    <ul class="goals"><li>eine Gesamtbilanz der ersten drei Abbauschritte aufzustellen und mit der Bruttogleichung abzugleichen.</li><li>Isotopenversuche auszuwerten.</li><li>eine begründete Hypothese zur Funktion des Sauerstoffs aufzustellen.</li></ul>
+  </div>
+
+  <div class="phase"><div class="ico">🚀</div><div><small>Einstieg</small><h2>Ein Rätsel</h2></div></div>
+  <div class="card">
+    <p>Nach Glykolyse, oxidativer Decarboxylierung und Citratzyklus sind alle sechs C-Atome der Glucose als CO₂ abgegeben. Die Zelle hat dabei aber <b>nur 4 ATP</b> gewonnen und <b>noch kein einziges O₂-Molekül</b> verbraucht.</p>
+    <div class="heft"><b>Ins Heft:</b> Formuliere das Problem als Frage in deinen eigenen Worten.</div>
+  </div>
+
+  <div class="phase"><div class="ico">🔬</div><div><small>Erarbeitung</small><h2>Bilanz ziehen</h2></div></div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">5.1</span><h3>Gesamtbilanz der ersten drei Schritte</h3><span class="badge b-op">aufstellen · vergleichen</span><span class="badge b-afb">AFB II</span><span class="badge b-soc">PA</span></div>
+    <ol><li>Stelle die Bilanzgleichung für Glykolyse + oxidative Decarboxylierung + Citratzyklus auf (pro Glucose). Nutze deine Bilanzen aus Stunde 3 und 4.</li><li>Vergleiche deine Gleichung mit der Bruttogleichung der Zellatmung. Welche Stoffe fehlen, welche tauchen zusätzlich auf?</li><li>Begründe, wo die Energie der Glucose jetzt „steckt“.</li></ol>
+    <details class="hint"><summary>Hilfe: Gerüst</summary><p>Glucose + 6 H₂O + __ NAD⁺ + __ FAD + __ ADP + __ Pᵢ → __ CO₂ + __ NADH + __ H⁺ + __ FADH₂ + __ ATP</p></details>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">5.2</span><h3>Ein Isotopen-Krimi</h3><span class="badge b-op">auswerten</span><span class="badge b-afb">AFB II</span><span class="badge b-soc">EA → PA</span></div>
+    <div class="mat"><div class="mat-h"><span class="m">M 5.2</span> Markierungsversuche mit dem Sauerstoff-Isotop ¹⁸O</div><div class="mat-b">
+      <p>Das Sauerstoff-Isotop ¹⁸O ist nicht radioaktiv, lässt sich aber mit einem Massenspektrometer nachweisen. In drei Ansätzen wurden Hefezellen unter aeroben Bedingungen mit Glucose versorgt. Jeweils ein Ausgangsstoff war mit ¹⁸O markiert. Anschließend wurde untersucht, in welchem Produkt die Markierung auftauchte.</p>
+      <div class="tbl-wrap"><table><tr><th>Ansatz</th><th>markierter Ausgangsstoff</th><th>¹⁸O nachgewiesen im …</th></tr>
+        <tr><td>A</td><td>Sauerstoff (¹⁸O₂)</td><td>Wasser (H₂¹⁸O); <b>nicht</b> im CO₂</td></tr>
+        <tr><td>B</td><td>Glucose (C₆H₁₂¹⁸O₆)</td><td>Kohlenstoffdioxid; <b>nicht</b> im neu gebildeten Wasser</td></tr>
+        <tr><td>C</td><td>Wasser (H₂¹⁸O) im Medium</td><td>Kohlenstoffdioxid (ein Teil der O-Atome)</td></tr></table></div>
+      <p class="src">Vereinfachte Darstellung klassischer Isotopenversuche zur Zellatmung.</p>
+    </div></div>
+    <ol><li>Werte die Versuchsergebnisse aus: Woher stammen die O-Atome im CO₂, woher die im gebildeten Wasser?</li><li>Erkläre Ergebnis C mithilfe deiner Bilanzgleichung aus 5.1.</li></ol>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">5.3</span><h3>Hypothese bilden</h3><span class="badge b-op">Hypothese aufstellen</span><span class="badge b-afb">AFB III</span></div>
+    <p>Stelle eine begründete Hypothese auf: Wie könnte die Zelle die Energie aus NADH + H⁺ und FADH₂ nutzbar machen, und welche Rolle spielt der Sauerstoff dabei? Nutze die Ergebnisse aus 5.1 und 5.2.</p>
+    <div class="heft"><b>Ins Heft:</b> Deine Hypothese – in Stunde 6 prüfst du sie.</div>
+  </div>
+
+  <div class="phase"><div class="ico">📓</div><div><small>Sicherung</small><h2>Zwischenbilanz im Schema</h2></div></div>
+  <div class="card">
+    <div class="info"><h4>Merke</h4>Glucose + 6 H₂O + 10 NAD⁺ + 2 FAD + 4 ADP + 4 Pᵢ → 6 CO₂ + 10 NADH + 10 H⁺ + 2 FADH₂ + 4 ATP<br>Der größte Teil der Energie steckt nun in den <b>Reduktionsäquivalenten</b>. Der O₂ wird erst in der Atmungskette gebraucht – er endet im <b>Wasser</b>.</div>
+    <a class="btn brand" href="#schema" data-stage-link="5" style="text-decoration:none;display:inline-block">Schema Stufe 5 ansehen →</a>
+  </div>
+
+  <div class="phase"><div class="ico">✅</div><div><small>Selbstcheck</small><h2>Hast du's drauf?</h2></div></div>
+  <div class="quiz" data-quiz="s5"></div>
+  <div class="lfoot"><a class="btn sec" href="#s4">← Stunde 4</a><button class="btn donebtn" data-id="s5" type="button">Stunde als erledigt markieren</button><a class="btn" href="#s6">Stunde 6 →</a></div>
+</section>
+
+<!-- =========================================================== STUNDE 6 -->
+<section class="view" id="s6">
+  <div class="hero"><div class="lhero"><div class="lnum">06</div><div>
+    <div class="kicker">Woche 2 · Stunde 6</div>
+    <h1>Kraftwerk an der Membran</h1>
+    <div class="q">❓ Wie wird die Energie aus NADH + H⁺ und FADH₂ in ATP umgewandelt?</div>
+    <div class="meta"><span class="pill">Buch S. 110–111</span><span class="pill">45 min</span></div>
+  </div></div></div>
+
+  <div class="card"><h3>Heute lernst du …</h3>
+    <ul class="goals"><li>den Elektronentransport in der Atmungskette zu beschreiben.</li><li>den Aufbau des Protonengradienten und die ATP-Synthese zu erklären (chemiosmotisches Modell).</li><li>die Vorgänge in einer vereinfachten Skizze darzustellen.</li></ul>
+  </div>
+
+  <div class="phase"><div class="ico">🚀</div><div><small>Einstieg</small><h2>Knall oder Bus?</h2></div></div>
+  <div class="card">
+    <p>Wasserstoff und Sauerstoff reagieren im Labor explosionsartig zu Wasser (Knallgasreaktion). In Wuppertal fahren Busse mit genau dieser Reaktion – kontrolliert in einer Brennstoffzelle, die daraus elektrischen Strom gewinnt (Buch S. 110, Abb. 1).</p>
+    <div class="heft"><b>Ins Heft:</b> Was haben ein Wasserstoffbus und deine Mitochondrien gemeinsam? Vergleiche mit deiner Hypothese aus Stunde 5.</div>
+  </div>
+
+  <div class="phase"><div class="ico">🔬</div><div><small>Erarbeitung</small><h2>Die Atmungskette Schritt für Schritt</h2></div></div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">6.1</span><h3>Elektronentransport</h3><span class="badge b-op">beschreiben</span><span class="badge b-afb">AFB I</span><span class="badge b-book">Buch S. 110–111</span></div>
+    <p>Klicke dich durch die Animation und lies im Buch die Abschnitte „Funktion der Atmungskette“ und „Elektronentransport“. Beschreibe dann in <b>eigenen Worten</b> den Weg der Elektronen von NADH + H⁺ bis zum Sauerstoff.</p>
+    <figure><svg id="akSvg" viewBox="0 0 820 390" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" role="img" aria-label="Atmungskette schrittweise"><defs><marker id="arE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f6fdb"/></marker></defs><defs><marker id="arH" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d9405a"/></marker></defs><defs><marker id="arK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#14232a"/></marker></defs><rect x="0" y="0" width="820" height="150" fill="#fdeee3"/><rect x="0" y="210" width="820" height="180" fill="#f8d3b5"/><rect x="0" y="150" width="820" height="60" fill="#f6dfb8"/><circle cx="6" cy="155" r="5" fill="#d99a4e"/><circle cx="6" cy="205" r="5" fill="#d99a4e"/><circle cx="19" cy="155" r="5" fill="#d99a4e"/><circle cx="19" cy="205" r="5" fill="#d99a4e"/><circle cx="32" cy="155" r="5" fill="#d99a4e"/><circle cx="32" cy="205" r="5" fill="#d99a4e"/><circle cx="45" cy="155" r="5" fill="#d99a4e"/><circle cx="45" cy="205" r="5" fill="#d99a4e"/><circle cx="58" cy="155" r="5" fill="#d99a4e"/><circle cx="58" cy="205" r="5" fill="#d99a4e"/><circle cx="71" cy="155" r="5" fill="#d99a4e"/><circle cx="71" cy="205" r="5" fill="#d99a4e"/><circle cx="84" cy="155" r="5" fill="#d99a4e"/><circle cx="84" cy="205" r="5" fill="#d99a4e"/><circle cx="97" cy="155" r="5" fill="#d99a4e"/><circle cx="97" cy="205" r="5" fill="#d99a4e"/><circle cx="110" cy="155" r="5" fill="#d99a4e"/><circle cx="110" cy="205" r="5" fill="#d99a4e"/><circle cx="123" cy="155" r="5" fill="#d99a4e"/><circle cx="123" cy="205" r="5" fill="#d99a4e"/><circle cx="136" cy="155" r="5" fill="#d99a4e"/><circle cx="136" cy="205" r="5" fill="#d99a4e"/><circle cx="149" cy="155" r="5" fill="#d99a4e"/><circle cx="149" cy="205" r="5" fill="#d99a4e"/><circle cx="162" cy="155" r="5" fill="#d99a4e"/><circle cx="162" cy="205" r="5" fill="#d99a4e"/><circle cx="175" cy="155" r="5" fill="#d99a4e"/><circle cx="175" cy="205" r="5" fill="#d99a4e"/><circle cx="188" cy="155" r="5" fill="#d99a4e"/><circle cx="188" cy="205" r="5" fill="#d99a4e"/><circle cx="201" cy="155" r="5" fill="#d99a4e"/><circle cx="201" cy="205" r="5" fill="#d99a4e"/><circle cx="214" cy="155" r="5" fill="#d99a4e"/><circle cx="214" cy="205" r="5" fill="#d99a4e"/><circle cx="227" cy="155" r="5" fill="#d99a4e"/><circle cx="227" cy="205" r="5" fill="#d99a4e"/><circle cx="240" cy="155" r="5" fill="#d99a4e"/><circle cx="240" cy="205" r="5" fill="#d99a4e"/><circle cx="253" cy="155" r="5" fill="#d99a4e"/><circle cx="253" cy="205" r="5" fill="#d99a4e"/><circle cx="266" cy="155" r="5" fill="#d99a4e"/><circle cx="266" cy="205" r="5" fill="#d99a4e"/><circle cx="279" cy="155" r="5" fill="#d99a4e"/><circle cx="279" cy="205" r="5" fill="#d99a4e"/><circle cx="292" cy="155" r="5" fill="#d99a4e"/><circle cx="292" cy="205" r="5" fill="#d99a4e"/><circle cx="305" cy="155" r="5" fill="#d99a4e"/><circle cx="305" cy="205" r="5" fill="#d99a4e"/><circle cx="318" cy="155" r="5" fill="#d99a4e"/><circle cx="318" cy="205" r="5" fill="#d99a4e"/><circle cx="331" cy="155" r="5" fill="#d99a4e"/><circle cx="331" cy="205" r="5" fill="#d99a4e"/><circle cx="344" cy="155" r="5" fill="#d99a4e"/><circle cx="344" cy="205" r="5" fill="#d99a4e"/><circle cx="357" cy="155" r="5" fill="#d99a4e"/><circle cx="357" cy="205" r="5" fill="#d99a4e"/><circle cx="370" cy="155" r="5" fill="#d99a4e"/><circle cx="370" cy="205" r="5" fill="#d99a4e"/><circle cx="383" cy="155" r="5" fill="#d99a4e"/><circle cx="383" cy="205" r="5" fill="#d99a4e"/><circle cx="396" cy="155" r="5" fill="#d99a4e"/><circle cx="396" cy="205" r="5" fill="#d99a4e"/><circle cx="409" cy="155" r="5" fill="#d99a4e"/><circle cx="409" cy="205" r="5" fill="#d99a4e"/><circle cx="422" cy="155" r="5" fill="#d99a4e"/><circle cx="422" cy="205" r="5" fill="#d99a4e"/><circle cx="435" cy="155" r="5" fill="#d99a4e"/><circle cx="435" cy="205" r="5" fill="#d99a4e"/><circle cx="448" cy="155" r="5" fill="#d99a4e"/><circle cx="448" cy="205" r="5" fill="#d99a4e"/><circle cx="461" cy="155" r="5" fill="#d99a4e"/><circle cx="461" cy="205" r="5" fill="#d99a4e"/><circle cx="474" cy="155" r="5" fill="#d99a4e"/><circle cx="474" cy="205" r="5" fill="#d99a4e"/><circle cx="487" cy="155" r="5" fill="#d99a4e"/><circle cx="487" cy="205" r="5" fill="#d99a4e"/><circle cx="500" cy="155" r="5" fill="#d99a4e"/><circle cx="500" cy="205" r="5" fill="#d99a4e"/><circle cx="513" cy="155" r="5" fill="#d99a4e"/><circle cx="513" cy="205" r="5" fill="#d99a4e"/><circle cx="526" cy="155" r="5" fill="#d99a4e"/><circle cx="526" cy="205" r="5" fill="#d99a4e"/><circle cx="539" cy="155" r="5" fill="#d99a4e"/><circle cx="539" cy="205" r="5" fill="#d99a4e"/><circle cx="552" cy="155" r="5" fill="#d99a4e"/><circle cx="552" cy="205" r="5" fill="#d99a4e"/><circle cx="565" cy="155" r="5" fill="#d99a4e"/><circle cx="565" cy="205" r="5" fill="#d99a4e"/><circle cx="578" cy="155" r="5" fill="#d99a4e"/><circle cx="578" cy="205" r="5" fill="#d99a4e"/><circle cx="591" cy="155" r="5" fill="#d99a4e"/><circle cx="591" cy="205" r="5" fill="#d99a4e"/><circle cx="604" cy="155" r="5" fill="#d99a4e"/><circle cx="604" cy="205" r="5" fill="#d99a4e"/><circle cx="617" cy="155" r="5" fill="#d99a4e"/><circle cx="617" cy="205" r="5" fill="#d99a4e"/><circle cx="630" cy="155" r="5" fill="#d99a4e"/><circle cx="630" cy="205" r="5" fill="#d99a4e"/><circle cx="643" cy="155" r="5" fill="#d99a4e"/><circle cx="643" cy="205" r="5" fill="#d99a4e"/><circle cx="656" cy="155" r="5" fill="#d99a4e"/><circle cx="656" cy="205" r="5" fill="#d99a4e"/><circle cx="669" cy="155" r="5" fill="#d99a4e"/><circle cx="669" cy="205" r="5" fill="#d99a4e"/><circle cx="682" cy="155" r="5" fill="#d99a4e"/><circle cx="682" cy="205" r="5" fill="#d99a4e"/><circle cx="695" cy="155" r="5" fill="#d99a4e"/><circle cx="695" cy="205" r="5" fill="#d99a4e"/><circle cx="708" cy="155" r="5" fill="#d99a4e"/><circle cx="708" cy="205" r="5" fill="#d99a4e"/><circle cx="721" cy="155" r="5" fill="#d99a4e"/><circle cx="721" cy="205" r="5" fill="#d99a4e"/><circle cx="734" cy="155" r="5" fill="#d99a4e"/><circle cx="734" cy="205" r="5" fill="#d99a4e"/><circle cx="747" cy="155" r="5" fill="#d99a4e"/><circle cx="747" cy="205" r="5" fill="#d99a4e"/><circle cx="760" cy="155" r="5" fill="#d99a4e"/><circle cx="760" cy="205" r="5" fill="#d99a4e"/><circle cx="773" cy="155" r="5" fill="#d99a4e"/><circle cx="773" cy="205" r="5" fill="#d99a4e"/><circle cx="786" cy="155" r="5" fill="#d99a4e"/><circle cx="786" cy="205" r="5" fill="#d99a4e"/><circle cx="799" cy="155" r="5" fill="#d99a4e"/><circle cx="799" cy="205" r="5" fill="#d99a4e"/><circle cx="812" cy="155" r="5" fill="#d99a4e"/><circle cx="812" cy="205" r="5" fill="#d99a4e"/><text x="14" y="26" font-size="14" font-weight="800" fill="#7a3a18">Intermembranraum</text><text x="14" y="378" font-size="14" font-weight="800" fill="#7a3a18">Matrix</text><text x="806" y="186" font-size="11" font-weight="700" fill="#7a3a18" text-anchor="end">innere Membran</text><rect x="100" y="120" width="60" height="125" rx="14" fill="#8fb3a8" stroke="#3d6a5e" stroke-width="2"/><text x="130.0" y="188.5" font-size="18" font-weight="900" text-anchor="middle">I</text><rect x="212" y="160" width="40" height="80" rx="14" fill="#8fb3a8" stroke="#3d6a5e" stroke-width="2"/><text x="232.0" y="206.0" font-size="18" font-weight="900" text-anchor="middle">II</text><rect x="330" y="125" width="60" height="120" rx="14" fill="#8fb3a8" stroke="#3d6a5e" stroke-width="2"/><text x="360.0" y="191.0" font-size="18" font-weight="900" text-anchor="middle">III</text><rect x="490" y="120" width="60" height="125" rx="14" fill="#8fb3a8" stroke="#3d6a5e" stroke-width="2"/><text x="520.0" y="188.5" font-size="18" font-weight="900" text-anchor="middle">IV</text><circle cx="290" cy="188" r="14" fill="#c7d9f5" stroke="#2f6fdb" stroke-width="2"/><text x="290" y="193" font-size="13" font-weight="800" text-anchor="middle">Q</text><circle cx="440" cy="132" r="13" fill="#c7d9f5" stroke="#2f6fdb" stroke-width="2"/><text x="440" y="137" font-size="13" font-weight="800" text-anchor="middle">c</text><rect x="672" y="108" width="36" height="112" rx="10" fill="#e9b949" stroke="#9c7412" stroke-width="2"/><g id="akHead"><circle cx="690" cy="265" r="34" fill="#f2cf6e" stroke="#9c7412" stroke-width="2"/><line x1="690" y1="234" x2="690" y2="296" stroke="#9c7412" stroke-width="2"/><line x1="659" y1="265" x2="721" y2="265" stroke="#9c7412" stroke-width="2"/></g><text x="714" y="104" font-size="13" font-weight="800">ATP-Synthase</text><g class="ak-step" data-step="1"><rect x="30" y="300" width="71" height="22" rx="6" fill="#2f6fdb"/><text x="36" y="316" font-size="13" font-weight="800" fill="#fff">NADH+H⁺</text><line x1="80" y1="298" x2="118" y2="250" stroke="#2f6fdb" stroke-width="2.2" marker-end="url(#arE)"/><rect x="120" y="330" width="46" height="22" rx="6" fill="#2f6fdb"/><text x="126" y="346" font-size="13" font-weight="800" fill="#fff">NAD⁺</text><text x="58" y="270" font-size="13" font-weight="800" fill="#2f6fdb">2 e⁻</text></g><g class="ak-step" data-step="2"><line x1="130" y1="300" x2="130" y2="72" stroke="#d9405a" stroke-width="2.4" marker-end="url(#arH)"/><text x="112" y="60" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="140" y="48" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><line x1="162" y1="188" x2="274" y2="188" stroke="#2f6fdb" stroke-width="2.4" marker-end="url(#arE)"/><line x1="306" y1="188" x2="328" y2="188" stroke="#2f6fdb" stroke-width="2.4" marker-end="url(#arE)"/></g><g class="ak-step" data-step="3"><rect x="196" y="300" width="54" height="22" rx="6" fill="#0e9bb0"/><text x="202" y="316" font-size="13" font-weight="800" fill="#fff">FADH₂</text><line x1="225" y1="298" x2="230" y2="244" stroke="#2f6fdb" stroke-width="2.2" marker-end="url(#arE)"/><line x1="253" y1="196" x2="275" y2="193" stroke="#2f6fdb" stroke-width="2" marker-end="url(#arE)"/></g><g class="ak-step" data-step="4"><line x1="360" y1="300" x2="360" y2="72" stroke="#d9405a" stroke-width="2.4" marker-end="url(#arH)"/><text x="342" y="60" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="370" y="48" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><line x1="392" y1="150" x2="426" y2="138" stroke="#2f6fdb" stroke-width="2.4" marker-end="url(#arE)"/><line x1="454" y1="136" x2="488" y2="152" stroke="#2f6fdb" stroke-width="2.4" marker-end="url(#arE)"/></g><g class="ak-step" data-step="5"><line x1="520" y1="300" x2="520" y2="72" stroke="#d9405a" stroke-width="2.4" marker-end="url(#arH)"/><text x="502" y="60" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="530" y="48" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><line x1="520" y1="247" x2="520" y2="290" stroke="#2f6fdb" stroke-width="2.2" marker-end="url(#arE)"/><rect x="430" y="296" width="190" height="30" rx="8" fill="#fff" stroke="#c77a1c" stroke-width="2"/><text x="525" y="316" font-size="14" font-weight="800" text-anchor="middle">½ O₂ + 2 H⁺ → H₂O</text></g><g class="ak-step" data-step="6"><text x="40" y="70" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="200" y="70" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="230" y="105" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="270" y="60" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="420" y="80" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="460" y="95" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="590" y="70" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="610" y="120" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="612" y="96" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="250" y="128" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="60" y="120" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="400" y="112" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="770" y="70" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="782" y="138" font-size="14" font-weight="900" fill="#d9405a">H⁺</text><text x="240" y="24" font-size="13" font-weight="800" fill="#d9405a">hohe H⁺-Konzentration (niedriger pH)</text><text x="190" y="372" font-size="13" font-weight="700" fill="#7a3a18">niedrige H⁺-Konzentration</text></g><g class="ak-step" data-step="7"><line x1="690" y1="60" x2="690" y2="228" stroke="#d9405a" stroke-width="4" marker-end="url(#arH)"/><rect x="575" y="336" width="79" height="22" rx="6" fill="#d9405a"/><text x="581" y="352" font-size="13" font-weight="800" fill="#fff">ADP + Pᵢ</text><line x1="650" y1="348" x2="728" y2="348" stroke="#14232a" stroke-width="2.2" marker-end="url(#arK)"/><rect x="735" y="336" width="38" height="22" rx="6" fill="#d9405a"/><text x="741" y="352" font-size="13" font-weight="800" fill="#fff">ATP</text></g><text x="130" y="188" font-size="18" font-weight="900" text-anchor="middle" stroke="#8fb3a8" stroke-width="5" paint-order="stroke">I</text><text x="232" y="206" font-size="18" font-weight="900" text-anchor="middle" stroke="#8fb3a8" stroke-width="5" paint-order="stroke">II</text><text x="360" y="191" font-size="18" font-weight="900" text-anchor="middle" stroke="#8fb3a8" stroke-width="5" paint-order="stroke">III</text><text x="520" y="188" font-size="18" font-weight="900" text-anchor="middle" stroke="#8fb3a8" stroke-width="5" paint-order="stroke">IV</text></svg></figure>
+    <div class="ak-text" id="akText"></div>
+    <div class="btns"><button class="btn sec" id="akPrev" type="button">← Zurück</button><button class="btn brand" id="akNext" type="button">Weiter →</button><button class="btn sec" id="akReset" type="button">↺ Neustart</button></div>
+    <div class="info warn" style="margin-top:14px"><b>Achtung, Buchtext:</b> Auf S. 111 steht, Komplex I gebe die Elektronen an Komplex II weiter. Genauer gilt: Komplex I gibt die Elektronen an den beweglichen Träger <b>Ubichinon (Q)</b>, der sie zu Komplex III bringt. <b>Komplex II</b> ist der Eingang für die Elektronen aus <b>FADH₂</b> (so zeigt es auch Abb. 2 auf S. 111).</div>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">6.2</span><h3>Protonengradient und ATP-Synthase</h3><span class="badge b-op">erklären</span><span class="badge b-afb">AFB II</span><span class="badge b-soc">PA</span></div>
+    <p>Erkläre mithilfe des Buches (Abschnitte „ATP-Synthese“, „Oxidative Phosphorylierung“, „Chemiosmotisches Modell“), wie die Energie des Elektronentransports in ATP umgewandelt wird. Verwende die Begriffe: <i>Protonenpumpe, Intermembranraum, Protonengradient, pH-Wert, Undurchlässigkeit der inneren Membran, ATP-Synthase, oxidative Phosphorylierung</i>.</p>
+    <details class="hint"><summary>Hilfe: Satzanfänge</summary><p>„Beim Weitergeben der Elektronen wird Energie frei, die die Komplexe I, III und IV nutzen, um …“ – „Da die innere Membran für Protonen undurchlässig ist, …“ – „Die Protonen können nur durch … zurück in die Matrix strömen. Dabei …“</p></details>
+    <details class="hint"><summary>Hilfe: Warum liefert FADH₂ weniger ATP?</summary><p>Schau, an welchem Komplex FADH₂ seine Elektronen abgibt – und welcher Komplex dabei übersprungen wird.</p></details>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">6.3</span><h3>Skizze der Atmungskette</h3><span class="badge b-op">skizzieren</span><span class="badge b-afb">AFB I–II</span><span class="badge b-soc">EA</span></div>
+    <p>Zeichne eine vereinfachte Skizze der inneren Mitochondrienmembran mit den Komplexen I–IV und der ATP-Synthase. Zeichne den Weg der Elektronen in <b style="color:var(--nadh)">Blau</b> und den Weg der Protonen in <b style="color:var(--atp)">Rot</b> ein. Beschrifte Intermembranraum und Matrix.</p>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">6.4</span><h3>Modellkritik: Das Staudamm-Modell</h3><span class="badge b-op">beurteilen</span><span class="badge b-afb">AFB III</span><span class="badge b-soc">PA</span></div>
+    <p>Das chemiosmotische Modell wird oft mit einem Pumpspeicherkraftwerk verglichen: Pumpen befördern Wasser in einen hoch gelegenen Stausee; strömt es zurück, treibt es eine Turbine an, die Strom erzeugt.</p>
+    <ol><li>Ordne den Bestandteilen des Kraftwerks die Strukturen der Atmungskette zu.</li><li>Beurteile die Eignung des Modells, indem du mindestens zwei Grenzen benennst.</li></ol>
+  </div>
+
+  <div class="phase"><div class="ico">📓</div><div><small>Sicherung</small><h2>Schema ergänzen</h2></div></div>
+  <div class="card">
+    <div class="info"><h4>Merke – chemiosmotisches Modell</h4>Elektronentransport (exergonisch) → Komplexe I, III, IV pumpen H⁺ in den Intermembranraum → Protonengradient → H⁺ strömen durch die ATP-Synthase zurück → ADP + Pᵢ → ATP (<b>oxidative Phosphorylierung</b>). O₂ ist der <b>Endakzeptor</b> der Elektronen; dabei entsteht Wasser.</div>
+    <a class="btn brand" href="#schema" data-stage-link="6" style="text-decoration:none;display:inline-block">Schema Stufe 6 ansehen →</a>
+  </div>
+
+  <div class="phase"><div class="ico">✅</div><div><small>Selbstcheck</small><h2>Hast du's drauf?</h2></div></div>
+  <div class="quiz" data-quiz="s6"></div>
+  <div class="lfoot"><a class="btn sec" href="#s5">← Stunde 5</a><button class="btn donebtn" data-id="s6" type="button">Stunde als erledigt markieren</button><a class="btn" href="#s7">Stunde 7 →</a></div>
+</section>
+
+<!-- =========================================================== STUNDE 7 -->
+<section class="view" id="s7">
+  <div class="hero"><div class="lhero"><div class="lnum">07</div><div>
+    <div class="kicker">Woche 3 · Stunde 7</div>
+    <h1>Ohne Sauerstoff geht nichts</h1>
+    <div class="q">❓ Warum ist Sauerstoff lebensnotwendig – und wie viel ATP liefert ein Glucose-Molekül?</div>
+    <div class="meta"><span class="pill">Buch S. 114</span><span class="pill">45 min</span></div>
+  </div></div></div>
+
+  <div class="card"><h3>Heute lernst du …</h3>
+    <ul class="goals"><li>die Bedeutung von O₂ als Endakzeptor und von NADH + H⁺ als Elektronendonator zu analysieren.</li><li>die Wirkung von Hemmstoffen auf die Atmungskette zu erklären.</li><li>die Gesamtbilanz der Zellatmung aufzustellen.</li></ul>
+  </div>
+
+  <div class="phase"><div class="ico">🚀</div><div><small>Einstieg</small><h2>Tod durch Rauch</h2></div></div>
+  <div class="card">
+    <p>Bei Wohnungsbränden sterben die meisten Opfer nicht durch die Flammen, sondern durch giftigen Brandrauch. Neben Kohlenstoffmonoxid entsteht beim Verbrennen von Wolle, Seide und vielen Kunststoffen auch <b>Blausäure (Cyanwasserstoff, HCN)</b>. Schon geringe Mengen können innerhalb von Minuten tödlich sein.</p>
+    <div class="heft"><b>Ins Heft:</b> Cyanid blockiert Komplex IV. Sage vorher, was dann in der Atmungskette passiert.</div>
+  </div>
+
+  <div class="phase"><div class="ico">🔬</div><div><small>Erarbeitung</small><h2>Sauerstoff, Gifte und Bilanz</h2></div></div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">7.1</span><h3>Was passiert ohne Sauerstoff?</h3><span class="badge b-op">analysieren</span><span class="badge b-afb">AFB II</span><span class="badge b-soc">PA</span></div>
+    <p>Analysiere die Bedeutung von O₂ als Endakzeptor der Elektronen und von NADH + H⁺ als Elektronendonator für das Aufrechterhalten des Protonengradienten. Stelle die Folgen von Sauerstoffmangel als <b>Ursache-Wirkungs-Kette</b> (Flussdiagramm) dar – bis hin zu Citratzyklus und oxidativer Decarboxylierung.</p>
+    <details class="hint"><summary>Hilfe: Start der Kette</summary><p>Kein O₂ → Komplex IV kann Elektronen nicht abgeben → „Elektronenstau“ rückwärts bis Komplex I → NADH + H⁺ kann nicht mehr … → es fehlt an NAD⁺ für …</p></details>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">7.2</span><h3>Cyanid – genug Sauerstoff und trotzdem erstickt</h3><span class="badge b-op">erklären</span><span class="badge b-afb">AFB II</span></div>
+    <div class="mat"><div class="mat-h"><span class="m">M 7.2</span> Wirkung von Cyanid</div><div class="mat-b">
+      <p>Cyanid-Ionen (CN⁻) binden fest an Komplex IV der Atmungskette und verhindern die Übertragung der Elektronen auf Sauerstoff. Bei Cyanidvergiftungen ist das venöse Blut auffällig hellrot: Es enthält fast so viel Sauerstoff wie das arterielle Blut. Besonders schnell versagen Gehirn und Herz.</p>
+    </div></div>
+    <ol><li>Erkläre, warum Cyanid zu einem schnellen ATP-Mangel führt, obwohl genug Sauerstoff im Blut ist.</li><li>Erkläre die hellrote Farbe des venösen Blutes.</li></ol>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">7.3</span><h3>Gesamtbilanz der Zellatmung</h3><span class="badge b-op">bilanzieren · berechnen</span><span class="badge b-afb">AFB II</span><span class="badge b-book">Buch S. 114, Abb. 3</span></div>
+    <p>Berechne mit den Werten aus dem Buch die ATP-Ausbeute pro Glucose-Molekül.</p>
+    <div class="checker">
+      <div class="row"><label>NADH + H⁺ gesamt (Glykolyse + ox. Decarb. + Citratzyklus)</label><input data-answer="10" inputmode="numeric"></div>
+      <div class="row"><label>ATP aus NADH + H⁺ in der Atmungskette (je 3)</label><input data-answer="30" inputmode="numeric"></div>
+      <div class="row"><label>ATP aus FADH₂ in der Atmungskette (je 2)</label><input data-answer="4" inputmode="numeric"></div>
+      <div class="row"><label>ATP durch Substratkettenphosphorylierung</label><input data-answer="4" inputmode="numeric"></div>
+      <div class="row"><label>ATP-Kosten für den Transport von NADH + H⁺ ins Mitochondrium</label><input data-answer="2|-2|−2" inputmode="numeric"></div>
+      <div class="row"><label><b>ATP-Gewinn pro Glucose (netto)</b></label><input data-answer="36" inputmode="numeric"></div>
+      <div class="btns"><button class="btn check-btn" type="button">Prüfen</button><button class="btn sec reset-btn" type="button">Zurücksetzen</button><span class="check-out"></span></div>
+    </div>
+    <ol start="2"><li>Berechne den Wirkungsgrad der Zellatmung: Pro mol ATP werden ca. 30,6 kJ gespeichert, beim vollständigen Abbau von 1 mol Glucose werden ca. 2870 kJ frei. Was passiert mit dem Rest der Energie?</li></ol>
+    <div class="info blue"><b>Gut zu wissen:</b> Das Buch rechnet mit 3 ATP pro NADH + H⁺ und 2 ATP pro FADH₂ (= 36 ATP). Neuere Messungen ergeben eher 2,5 bzw. 1,5 ATP – also etwa 30–32 ATP pro Glucose. In der Klausur gelten die Werte aus dem Unterricht bzw. die Angaben im Material.</div>
+  </div>
+
+  <div class="task extra">
+    <div class="task-h"><span class="no">7.4</span><h3>Heizkraftwerk im Baby: braunes Fettgewebe</h3><span class="badge b-extra">Hausaufgabe</span><span class="badge b-op">erklären</span><span class="badge b-afb">AFB II</span></div>
+    <div class="mat"><div class="mat-h"><span class="m">M 7.4</span> Thermogenin</div><div class="mat-b">
+      <p>Neugeborene, kleine Säugetiere und Winterschläfer besitzen <b>braunes Fettgewebe</b>. Dessen Zellen enthalten besonders viele Mitochondrien. In ihrer inneren Membran sitzt neben der ATP-Synthase ein zusätzliches Kanalprotein, das <b>Thermogenin</b>. Es lässt Protonen aus dem Intermembranraum zurück in die Matrix strömen. Braunes Fett verbraucht sehr viel Sauerstoff und Fettsäuren, bildet aber vergleichsweise wenig ATP – dafür entsteht viel Wärme.</p>
+    </div></div>
+    <ol><li>Erkläre, wie Thermogenin zur Wärmebildung führt.</li><li>Begründe, warum braunes Fett trotz geringer ATP-Bildung sehr viel O₂ verbraucht.</li></ol>
+    <p class="src">Tipp: Diese Aufgabe ist eine gute Vorbereitung auf die Übungsklausur in Stunde 9.</p>
+  </div>
+
+  <div class="phase"><div class="ico">📓</div><div><small>Sicherung</small><h2>Übersichtsschema vervollständigen</h2></div></div>
+  <div class="card">
+    <p>Ergänze im Schema den Kasten „Gesamtbilanz“. Dein Übersichtsschema ist jetzt vollständig – es ist dein wichtigstes Lernmittel für die Klausur!</p>
+    <a class="btn brand" href="#schema" data-stage-link="7" style="text-decoration:none;display:inline-block">Vollständiges Schema ansehen →</a>
+  </div>
+
+  <div class="phase"><div class="ico">✅</div><div><small>Selbstcheck</small><h2>Hast du's drauf?</h2></div></div>
+  <div class="quiz" data-quiz="s7"></div>
+  <div class="lfoot"><a class="btn sec" href="#s6">← Stunde 6</a><button class="btn donebtn" data-id="s7" type="button">Stunde als erledigt markieren</button><a class="btn" href="#s8">Stunde 8 →</a></div>
+</section>
+
+<!-- =========================================================== STUNDE 8 -->
+<section class="view" id="s8">
+  <div class="hero"><div class="lhero"><div class="lnum">08</div><div>
+    <div class="kicker">Woche 3 · Stunde 8 · Klausurtraining</div>
+    <h1>Fit für die Materialauswertung</h1>
+    <div class="q">❓ Wie werte ich Material klausurtauglich aus?</div>
+    <div class="meta"><span class="pill">Buch S. 114–115</span><span class="pill">45 min</span></div>
+  </div></div></div>
+
+  <div class="card"><h3>Heute lernst du …</h3>
+    <ul class="goals"><li>Operatoren sicher zu unterscheiden.</li><li>Diagramme und Versuche nach einem festen Schema auszuwerten.</li><li>die Regulation der Zellatmung an Versuchsmaterial zu erklären.</li></ul>
+  </div>
+
+  <div class="phase"><div class="ico">🚀</div><div><small>Einstieg</small><h2>Operatoren-Check</h2></div></div>
+  <div class="card">
+    <p>Ordne jeder Beschreibung den passenden Operator zu. Mehr Operatoren findest du unter <a href="#operatoren">Operatoren</a>.</p>
+    <div class="checker">
+      <div class="row"><label>Sachverhalte strukturiert und fachsprachlich in eigenen Worten wiedergeben</label><select data-answer="beschreiben"><option value="">– wählen –</option><option>vergleichen</option><option>beschreiben</option><option>beurteilen</option><option>erklären</option><option>auswerten</option><option>erläutern</option></select></div>
+      <div class="row"><label>einen Sachverhalt auf Regeln, Gesetzmäßigkeiten und Ursachen zurückführen</label><select data-answer="erklären"><option value="">– wählen –</option><option>vergleichen</option><option>beschreiben</option><option>beurteilen</option><option>erklären</option><option>auswerten</option><option>erläutern</option></select></div>
+      <div class="row"><label>einen Sachverhalt erklären und durch zusätzliche Informationen oder Beispiele verständlich machen</label><select data-answer="erläutern"><option value="">– wählen –</option><option>vergleichen</option><option>beschreiben</option><option>beurteilen</option><option>erklären</option><option>auswerten</option><option>erläutern</option></select></div>
+      <div class="row"><label>Daten oder Ergebnisse in einen Zusammenhang stellen und Schlussfolgerungen ziehen</label><select data-answer="auswerten"><option value="">– wählen –</option><option>vergleichen</option><option>beschreiben</option><option>beurteilen</option><option>erklären</option><option>auswerten</option><option>erläutern</option></select></div>
+      <div class="row"><label>Gemeinsamkeiten und Unterschiede nach Kriterien herausarbeiten</label><select data-answer="vergleichen"><option value="">– wählen –</option><option>vergleichen</option><option>beschreiben</option><option>beurteilen</option><option>erklären</option><option>auswerten</option><option>erläutern</option></select></div>
+      <div class="row"><label>zu einem Sachverhalt ein selbstständiges, fachlich begründetes Urteil formulieren</label><select data-answer="beurteilen"><option value="">– wählen –</option><option>vergleichen</option><option>beschreiben</option><option>beurteilen</option><option>erklären</option><option>auswerten</option><option>erläutern</option></select></div>
+      <div class="btns"><button class="btn check-btn" type="button">Prüfen</button><button class="btn sec reset-btn" type="button">Zurücksetzen</button><span class="check-out"></span></div>
+    </div>
+  </div>
+
+  <div class="phase"><div class="ico">🧭</div><div><small>Methode</small><h2>Materialauswertung in 5 Schritten</h2></div></div>
+  <div class="card">
+    <ol>
+      <li><b>Aufgabe knacken:</b> Operator markieren. Was genau wird verlangt – nur beschreiben oder auch erklären?</li>
+      <li><b>Material sichten:</b> Titel, Versuchsbedingungen, Achsen mit Größen und Einheiten, Legende, Zeitpunkte von Zugaben.</li>
+      <li><b>Beschreiben:</b> den Verlauf in Abschnitten mit <b>konkreten Werten</b> wiedergeben („Von 0 bis 4 min sinkt die O₂-Konzentration leicht von 100 % auf 96 %, …“) – noch ohne Deutung.</li>
+      <li><b>Erklären/Deuten:</b> jeden Abschnitt mit Fachwissen begründen. Fachbegriffe verwenden, Ursache → Wirkung formulieren.</li>
+      <li><b>Fazit:</b> die Ergebnisse auf die Fragestellung beziehen und ein knappes Ergebnis formulieren.</li>
+    </ol>
+    <div class="info warn"><h4>Typische Fehler</h4>Beschreibung und Erklärung vermischen · Werte ohne Einheit · „steigt“ ohne Zeitraum · Fachbegriffe fehlen · nur das Material nacherzählen, ohne Bezug zur Frage.</div>
+    <div class="heft"><b>Ins Heft:</b> Die 5 Schritte als Checkliste auf eine Karteikarte – sie darf dich bis zur Klausur begleiten.</div>
+  </div>
+
+  <div class="phase"><div class="ico">🔬</div><div><small>Erarbeitung</small><h2>Training: Regulation der Zellatmung</h2></div></div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">8.1</span><h3>Wie wird die Atmungskette reguliert?</h3><span class="badge b-op">erklären · begründen</span><span class="badge b-afb">AFB II</span><span class="badge b-book">Buch S. 115, Material E</span></div>
+    <p>Bearbeite im Buch Material E, <b>Aufgaben 1 und 2</b>. Halte dich bewusst an die 5 Schritte und trenne Beschreibung und Erklärung.</p>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">8.2</span><h3>Das Schlüsselenzym Phosphofructokinase</h3><span class="badge b-op">erklären · prüfen</span><span class="badge b-afb">AFB II–III</span><span class="badge b-book">Buch S. 114–115, Material F</span></div>
+    <p>Lies den Abschnitt „Regulation der Zellatmung“ (S. 114–115) und bearbeite Material F, <b>Aufgaben 1–3</b>. Aufgabe 4 ist für Schnelle.</p>
+    <details class="hint"><summary>Hilfe: Begriffe</summary><p>allosterisches Enzym · Effektor (positiv/negativ) · Substratkonzentration · Sättigung · negative Rückkopplung (Endprodukthemmung)</p></details>
+  </div>
+
+  <div class="task">
+    <div class="task-h"><span class="no">8.3</span><h3>Feedback unter Partnern</h3><span class="badge b-op">prüfen</span><span class="badge b-soc">PA</span></div>
+    <p>Tauscht eure Antworten zu 8.1 aus. Prüft gegenseitig mit eurer 5-Schritte-Karteikarte: Wurden Werte genannt? Wurden Beschreibung und Erklärung getrennt? Wurden Fachbegriffe verwendet? Notiert für die Partnerin bzw. den Partner einen Tipp.</p>
+  </div>
+
+  <div class="phase"><div class="ico">✅</div><div><small>Selbstcheck</small><h2>Hast du's drauf?</h2></div></div>
+  <div class="quiz" data-quiz="s8"></div>
+  <div class="lfoot"><a class="btn sec" href="#s7">← Stunde 7</a><button class="btn donebtn" data-id="s8" type="button">Stunde als erledigt markieren</button><a class="btn" href="#s9">Stunde 9 →</a></div>
+</section>
+
+<!-- =========================================================== STUNDE 9 -->
+<section class="view" id="s9">
+  <div class="hero"><div class="lhero"><div class="lnum">09</div><div>
+    <div class="kicker">Woche 3 · Stunde 9 · Übungsklausur</div>
+    <h1>Das gefährliche Schlankheitsmittel</h1>
+    <div class="q">⏱ Bearbeitungszeit: 40 Minuten · Hilfsmittel: keine · 36 Punkte</div>
+  </div></div></div>
+
+  <div class="info warn"><b>So läuft die Stunde:</b> Bearbeite die Übungsklausur allein und unter Klausurbedingungen auf Papier. Deine Lehrkraft gibt dir anschließend den Erwartungshorizont, mit dem du deine Lösung selbst korrigierst.</div>
+
+  <div class="card">
+    <h3>Material</h3>
+    <div class="mat"><div class="mat-h"><span class="m">M 1</span> DNP – ein Wundermittel?</div><div class="mat-b">
+      <p>In den 1930er-Jahren wurde in den USA der Stoff 2,4-Dinitrophenol (DNP) als Schlankheitsmittel verkauft. Die Anwenderinnen und Anwender nahmen schnell ab, obwohl sie ihre Ernährung nicht umstellten. Gleichzeitig fielen erhöhte Körpertemperatur, starkes Schwitzen und eine beschleunigte Atmung auf. Es kam zu zahlreichen schweren Vergiftungen und Todesfällen durch Überhitzung. 1938 wurde DNP als Arzneimittel verboten.</p>
+      <p>DNP ist ein kleines, fettlösliches Molekül. Es kann im Intermembranraum Protonen aufnehmen, durch die innere Mitochondrienmembran diffundieren und die Protonen in der Matrix wieder abgeben.</p>
+    </div></div>
+    <div class="mat"><div class="mat-h"><span class="m">M 2</span> Versuch mit isolierten Mitochondrien</div><div class="mat-b">
+      <p>Isolierte Mitochondrien wurden in ein sauerstoffhaltiges Medium mit Pyruvat und Phosphat gegeben. Gemessen wurden die O₂-Konzentration im Medium und die ATP-Konzentration. Nach 4 Minuten wurde ADP zugegeben, nach 12 Minuten DNP.</p>
+      <figure><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" role="img" aria-label="Diagramm Sauerstoff- und ATP-Konzentration"><rect x="70" y="50" width="500" height="250" fill="#f7f9fb" stroke="#c8d1d8"/><line x1="70" y1="300.0" x2="570" y2="300.0" stroke="#e1e6ea"/><text x="62" y="304.0" font-size="12" text-anchor="end">0</text><text x="578" y="304.0" font-size="12">0</text><line x1="70" y1="250.0" x2="570" y2="250.0" stroke="#e1e6ea"/><text x="62" y="254.0" font-size="12" text-anchor="end">20</text><text x="578" y="254.0" font-size="12">20</text><line x1="70" y1="200.0" x2="570" y2="200.0" stroke="#e1e6ea"/><text x="62" y="204.0" font-size="12" text-anchor="end">40</text><text x="578" y="204.0" font-size="12">40</text><line x1="70" y1="150.0" x2="570" y2="150.0" stroke="#e1e6ea"/><text x="62" y="154.0" font-size="12" text-anchor="end">60</text><text x="578" y="154.0" font-size="12">60</text><line x1="70" y1="100.0" x2="570" y2="100.0" stroke="#e1e6ea"/><text x="62" y="104.0" font-size="12" text-anchor="end">80</text><text x="578" y="104.0" font-size="12">80</text><line x1="70" y1="50.0" x2="570" y2="50.0" stroke="#e1e6ea"/><text x="62" y="54.0" font-size="12" text-anchor="end">100</text><text x="578" y="54.0" font-size="12">100</text><text x="70" y="318" font-size="12" text-anchor="middle">0</text><text x="120" y="318" font-size="12" text-anchor="middle">2</text><text x="170" y="318" font-size="12" text-anchor="middle">4</text><text x="220" y="318" font-size="12" text-anchor="middle">6</text><text x="270" y="318" font-size="12" text-anchor="middle">8</text><text x="320" y="318" font-size="12" text-anchor="middle">10</text><text x="370" y="318" font-size="12" text-anchor="middle">12</text><text x="420" y="318" font-size="12" text-anchor="middle">14</text><text x="470" y="318" font-size="12" text-anchor="middle">16</text><text x="520" y="318" font-size="12" text-anchor="middle">18</text><text x="570" y="318" font-size="12" text-anchor="middle">20</text><text x="320" y="342" font-size="13" font-weight="700" text-anchor="middle">Zeit [min]</text><text x="20" y="175" font-size="13" font-weight="700" fill="#2f6fdb" text-anchor="middle" transform="rotate(-90 20 175)">O₂-Konzentration im Medium [%]</text><text x="620" y="175" font-size="13" font-weight="700" fill="#d9405a" text-anchor="middle" transform="rotate(90 620 175)">ATP-Konzentration [rel. Einheiten]</text><line x1="170" y1="50" x2="170" y2="300" stroke="#14232a" stroke-dasharray="5 4"/><text x="170" y="42" font-size="12" font-weight="800" text-anchor="middle">Zugabe ADP</text><line x1="370" y1="50" x2="370" y2="300" stroke="#14232a" stroke-dasharray="5 4"/><text x="370" y="42" font-size="12" font-weight="800" text-anchor="middle">Zugabe DNP</text><polyline fill="none" stroke="#2f6fdb" stroke-width="3.5" points="70,50.0 170,60.0 270,110.0 370,117.5 570,227.5"/><polyline fill="none" stroke="#d9405a" stroke-width="3.5" stroke-dasharray="9 5" points="70,287.5 170,287.5 270,150.0 370,150.0 570,162.5"/><text x="470" y="200" font-size="13" font-weight="800" fill="#2f6fdb">O₂</text><text x="470" y="140" font-size="13" font-weight="800" fill="#d9405a">ATP</text></svg><figcaption>Abb. M2: O₂-Konzentration (durchgezogene Linie) und ATP-Konzentration (gestrichelte Linie) im Versuchsverlauf (vereinfachte Darstellung)</figcaption></figure>
+    </div></div>
+    <div class="mat"><div class="mat-h"><span class="m">M 3</span> Wirkung unterschiedlicher DNP-Konzentrationen</div><div class="mat-b">
+      <p>Isolierte Mitochondrien wurden mit Pyruvat, ADP und Phosphat versorgt und unterschiedlichen DNP-Konzentrationen ausgesetzt. Die Werte sind auf den Ansatz ohne DNP (= 100 %) bezogen.</p>
+      <div class="tbl-wrap"><table><tr><th>DNP-Konzentration [µmol/L]</th><th>0</th><th>10</th><th>50</th><th>100</th><th>200</th></tr>
+        <tr><td>O₂-Verbrauch [%]</td><td>100</td><td>140</td><td>210</td><td>260</td><td>270</td></tr>
+        <tr><td>ATP-Bildung [%]</td><td>100</td><td>75</td><td>40</td><td>15</td><td>5</td></tr></table></div>
+      <p class="src">Modellhafte Werte, vereinfacht.</p>
+    </div></div>
+  </div>
+
+  <div class="card">
+    <h3>Aufgaben</h3>
+    <div class="tbl-wrap"><table class="pts"><tr><th>Nr.</th><th>Aufgabe</th><th>Punkte</th></tr>
+      <tr><td>1</td><td><b>Beschreiben</b> Sie den Verlauf der O₂- und der ATP-Konzentration in M2.</td><td>6</td></tr>
+      <tr><td>2</td><td><b>Erklären</b> Sie die Veränderungen nach Zugabe von ADP und nach Zugabe von DNP in M2 auf der Grundlage des chemiosmotischen Modells.</td><td>12</td></tr>
+      <tr><td>3</td><td><b>Werten</b> Sie M3 <b>aus</b> und <b>erklären</b> Sie auf dieser Grundlage die Gewichtsabnahme und die lebensgefährliche Überhitzung nach Einnahme von DNP (M1).</td><td>10</td></tr>
+      <tr><td>4</td><td>In einem Fitnessforum heißt es: „DNP verbrennt Fett einfach schneller – genau wie Sport, nur ohne Anstrengung.“ <b>Nehmen Sie</b> aus biologischer Sicht <b>Stellung</b> zu dieser Aussage.</td><td>8</td></tr>
+      <tr><td></td><td style="text-align:right"><b>Summe</b></td><td><b>36</b></td></tr></table></div>
+  </div>
+
+  <div class="phase"><div class="ico">🎯</div><div><small>Nach der Übungsklausur</small><h2>Bin ich bereit für die Klausur?</h2></div></div>
+  <div class="card">
+    <p>Schätze dich ehrlich ein. Bei 🙁 oder 😐 weißt du, was du bis zur Klausur noch wiederholen solltest (Stunde in Klammern).</p>
+    <div class="tbl-wrap"><table class="self"><tr><th>Ich kann …</th><th>🙂</th><th>😐</th><th>🙁</th></tr>
+      <tr><td>den Bau des Mitochondriums beschreiben und Teilschritte der Zellatmung zuordnen. (1)</td><td><input type="radio" name="sa1"></td><td><input type="radio" name="sa1"></td><td><input type="radio" name="sa1"></td></tr>
+      <tr><td>Oxidation/Reduktion erklären und die Rolle von NAD⁺/FAD beschreiben. (2)</td><td><input type="radio" name="sa2"></td><td><input type="radio" name="sa2"></td><td><input type="radio" name="sa2"></td></tr>
+      <tr><td>die Glykolyse mit Energieinvestition und -freisetzung beschreiben und bilanzieren. (3)</td><td><input type="radio" name="sa3"></td><td><input type="radio" name="sa3"></td><td><input type="radio" name="sa3"></td></tr>
+      <tr><td>oxidative Decarboxylierung und Citratzyklus als C-Körper-Schema darstellen und bilanzieren. (4)</td><td><input type="radio" name="sa4"></td><td><input type="radio" name="sa4"></td><td><input type="radio" name="sa4"></td></tr>
+      <tr><td>die Zwischenbilanz mit der Bruttogleichung vergleichen und Isotopenversuche auswerten. (5)</td><td><input type="radio" name="sa5"></td><td><input type="radio" name="sa5"></td><td><input type="radio" name="sa5"></td></tr>
+      <tr><td>Elektronentransport, Protonengradient und ATP-Synthase erklären und skizzieren. (6)</td><td><input type="radio" name="sa6"></td><td><input type="radio" name="sa6"></td><td><input type="radio" name="sa6"></td></tr>
+      <tr><td>die Bedeutung von O₂ analysieren, Hemmstoffe erklären und die Gesamtbilanz aufstellen. (7)</td><td><input type="radio" name="sa7"></td><td><input type="radio" name="sa7"></td><td><input type="radio" name="sa7"></td></tr>
+      <tr><td>Diagramme und Versuche mit den 5 Schritten auswerten und Operatoren unterscheiden. (8)</td><td><input type="radio" name="sa8"></td><td><input type="radio" name="sa8"></td><td><input type="radio" name="sa8"></td></tr></table></div>
+  </div>
+  <div class="lfoot"><a class="btn sec" href="#s8">← Stunde 8</a><button class="btn donebtn" data-id="s9" type="button">Stunde als erledigt markieren</button><a class="btn" href="#schema">Übersichtsschema →</a></div>
+</section>
+
+<!-- =========================================================== SCHEMA -->
+<section class="view" id="schema">
+  <h1>Übersichtsschema Zellatmung</h1>
+  <p>Mit dem Regler kannst du das Schema Stunde für Stunde aufbauen. Zeichne es parallel in dein Heft – so entsteht deine wichtigste Lernhilfe für die Klausur.</p>
+  <div class="schema-ctl"><label for="stageRange"><b>Stand:</b></label><input type="range" id="stageRange" min="1" max="7" value="7"><span id="stageLabel" style="font-weight:700"></span></div>
+  <div class="card" style="padding:12px"><figure style="margin:0"><svg id="schemaSvg" viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" role="img" aria-label="Übersichtsschema der Zellatmung"><defs><marker id="arS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#14232a"/></marker></defs><g class="st" data-stage="1"><rect x="10" y="10" width="880" height="600" rx="40" fill="#f2f7ef" stroke="#9bb59a" stroke-width="3"/><text x="34" y="44" font-size="17" font-weight="800" fill="#4f6b4e">Cytoplasma</text><rect x="300" y="95" width="570" height="445" rx="120" fill="#fdeee3" stroke="#b4532a" stroke-width="5"/><rect x="322" y="117" width="526" height="363" rx="100" fill="#f8d3b5" stroke="#b4532a" stroke-width="4"/><text x="585" y="86" font-size="16" font-weight="800" fill="#b4532a" text-anchor="middle">Mitochondrium</text><text x="585" y="111" font-size="11" fill="#b4532a" text-anchor="middle">Intermembranraum</text><text x="585" y="146" font-size="15" font-weight="700" fill="#b4532a" text-anchor="middle">Matrix</text><text x="852" y="300" font-size="11" fill="#b4532a" text-anchor="middle" transform="rotate(90 852 300)">innere Mitochondrienmembran</text><text x="450" y="595" font-size="16" font-weight="800" fill="#14232a" text-anchor="middle">C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O     (ΔG ≈ −2870 kJ/mol)</text></g><g class="st" data-stage="2"><rect x="30" y="60" width="38" height="22" rx="6" fill="#d9405a"/><text x="36" y="76" font-size="13" font-weight="800" fill="#fff">ATP</text><rect x="80" y="60" width="71" height="22" rx="6" fill="#2f6fdb"/><text x="86" y="76" font-size="13" font-weight="800" fill="#fff">NADH+H⁺</text><rect x="170" y="60" width="54" height="22" rx="6" fill="#0e9bb0"/><text x="176" y="76" font-size="13" font-weight="800" fill="#fff">FADH₂</text><rect x="233" y="60" width="38" height="22" rx="6" fill="#6f7b85"/><text x="239" y="76" font-size="13" font-weight="800" fill="#fff">CO₂</text></g><g class="st" data-stage="3"><text x="120" y="135" font-size="15" font-weight="800" text-anchor="middle">Glucose (C₆)</text><line x1="120" y1="142" x2="120" y2="174" stroke="#14232a" stroke-width="2.2" marker-end="url(#arS)"/><rect x="40" y="178" width="160" height="50" rx="12" fill="#fff" stroke="#14232a" stroke-width="2"/><text x="120" y="209" font-size="16" font-weight="800" text-anchor="middle">Glykolyse</text><line x1="120" y1="230" x2="120" y2="274" stroke="#14232a" stroke-width="2.2" marker-end="url(#arS)"/><text x="120" y="296" font-size="15" font-weight="800" text-anchor="middle">2 Pyruvat (C₃)</text><rect x="210" y="180" width="59" height="21" rx="6" fill="#d9405a"/><text x="216" y="195" font-size="12" font-weight="800" fill="#fff">+2 ATP</text><rect x="210" y="207" width="81" height="21" rx="6" fill="#2f6fdb"/><text x="216" y="222" font-size="12" font-weight="800" fill="#fff">2 NADH+H⁺</text><text x="120" y="250" font-size="11" fill="#5a6a70" text-anchor="start" dx="8">netto</text></g><g class="st" data-stage="4"><line x1="190" y1="300" x2="341" y2="300" stroke="#14232a" stroke-width="2.2" marker-end="url(#arS)"/><text x="250" y="320" font-size="11" fill="#5a6a70" text-anchor="middle">Transport in die Matrix</text><rect x="345" y="272" width="150" height="54" rx="12" fill="#fff" stroke="#14232a" stroke-width="2"/><text x="420" y="295" font-size="12.5" font-weight="800" text-anchor="middle">oxidative</text><text x="420" y="313" font-size="12.5" font-weight="800" text-anchor="middle">Decarboxylierung</text><rect x="345" y="238" width="51" height="21" rx="6" fill="#6f7b85"/><text x="351" y="253" font-size="12" font-weight="800" fill="#fff">2 CO₂</text><rect x="400" y="238" width="81" height="21" rx="6" fill="#2f6fdb"/><text x="406" y="253" font-size="12" font-weight="800" fill="#fff">2 NADH+H⁺</text><line x1="497" y1="299" x2="556" y2="282" stroke="#14232a" stroke-width="2.2" marker-end="url(#arS)"/><text x="540" y="340" font-size="12" font-weight="700" text-anchor="middle">2 Acetyl-CoA (C₂)</text><circle cx="620" cy="255" r="62" fill="#fff" stroke="#14232a" stroke-width="2"/><path d="M620,203 A52,52 0 1 1 572,240" fill="none" stroke="#ef6c33" stroke-width="3" marker-end="url(#arS)"/><text x="620" y="252" font-size="15" font-weight="800" text-anchor="middle">Citrat-</text><text x="620" y="270" font-size="15" font-weight="800" text-anchor="middle">zyklus (2×)</text><rect x="702" y="160" width="51" height="21" rx="6" fill="#6f7b85"/><text x="708" y="175" font-size="12" font-weight="800" fill="#fff">4 CO₂</text><rect x="702" y="187" width="81" height="21" rx="6" fill="#2f6fdb"/><text x="708" y="202" font-size="12" font-weight="800" fill="#fff">6 NADH+H⁺</text><rect x="702" y="214" width="66" height="21" rx="6" fill="#0e9bb0"/><text x="708" y="229" font-size="12" font-weight="800" fill="#fff">2 FADH₂</text><rect x="702" y="241" width="51" height="21" rx="6" fill="#d9405a"/><text x="708" y="256" font-size="12" font-weight="800" fill="#fff">2 ATP</text></g><g class="st" data-stage="5"><rect x="345" y="352" width="485" height="54" rx="12" fill="#fffdf2" stroke="#c9a227" stroke-width="2" stroke-dasharray="6 4"/><text x="360" y="374" font-size="13" font-weight="800">Zwischenbilanz (Glykolyse → Citratzyklus):</text><text x="360" y="395" font-size="13">6 CO₂ · 4 ATP · 10 NADH+H⁺ · 2 FADH₂ – aber noch kein O₂ verbraucht!</text></g><g class="st" data-stage="6"><text x="345" y="440" font-size="12" font-weight="700">10 NADH+H⁺, 2 FADH₂ →</text><line x1="470" y1="452" x2="470" y2="514" stroke="#d9405a" stroke-width="2" marker-end="url(#arS)"/><line x1="585" y1="452" x2="585" y2="514" stroke="#d9405a" stroke-width="2" marker-end="url(#arS)"/><line x1="660" y1="452" x2="660" y2="514" stroke="#d9405a" stroke-width="2" marker-end="url(#arS)"/><line x1="718" y1="530" x2="718" y2="438" stroke="#d9405a" stroke-width="2.4" marker-end="url(#arS)"/><polyline points="470,480 520,480 585,480 655,480" fill="none" stroke="#2f6fdb" stroke-width="3" stroke-dasharray="5 4" marker-end="url(#arS)"/><rect x="450" y="455.0" width="40" height="50" rx="9" fill="#8fb3a8" stroke="#3d6a5e" stroke-width="2"/><text x="470.0" y="485" font-size="13" font-weight="800" text-anchor="middle" fill="#14232a">I</text><rect x="505" y="462.0" width="30" height="36" rx="9" fill="#8fb3a8" stroke="#3d6a5e" stroke-width="2"/><text x="520.0" y="485" font-size="13" font-weight="800" text-anchor="middle" fill="#14232a">II</text><rect x="565" y="455.0" width="40" height="50" rx="9" fill="#8fb3a8" stroke="#3d6a5e" stroke-width="2"/><text x="585.0" y="485" font-size="13" font-weight="800" text-anchor="middle" fill="#14232a">III</text><rect x="640" y="455.0" width="40" height="50" rx="9" fill="#8fb3a8" stroke="#3d6a5e" stroke-width="2"/><text x="660.0" y="485" font-size="13" font-weight="800" text-anchor="middle" fill="#14232a">IV</text><rect x="698" y="448" width="40" height="64" rx="10" fill="#e9b949" stroke="#9c7412" stroke-width="2" fill-opacity=".92"/><text x="718" y="484" font-size="10" font-weight="800" text-anchor="middle">ATP-</text><text x="718" y="496" font-size="10" font-weight="800" text-anchor="middle">Syn.</text><text x="455" y="532" font-size="13" font-weight="800" fill="#d9405a">H⁺   H⁺   H⁺   H⁺   H⁺   H⁺   H⁺</text><rect x="745" y="420" width="59" height="21" rx="6" fill="#d9405a"/><text x="751" y="435" font-size="12" font-weight="800" fill="#fff">34 ATP</text><text x="604" y="438" font-size="12" font-weight="700" text-anchor="middle">½ O₂ + 2 H⁺ → H₂O</text><text x="585" y="563" font-size="13" font-weight="800" text-anchor="middle" fill="#7a3a18">Atmungskette &amp; ATP-Synthase (innere Mitochondrienmembran)</text></g><g class="st" data-stage="7"><rect x="30" y="370" width="250" height="160" rx="16" fill="#fff" stroke="#0e7c66" stroke-width="3"/><text x="46" y="398" font-size="15" font-weight="850" fill="#0a5546">Gesamtbilanz pro Glucose</text><text x="46" y="424" font-size="13">Substratkettenphosph.:   4 ATP</text><text x="46" y="446" font-size="13">Atmungskette (10×3 + 2×2): 34 ATP</text><text x="46" y="468" font-size="13">Transportkosten:          −2 ATP</text><line x1="46" y1="480" x2="264" y2="480" stroke="#14232a"/><text x="46" y="505" font-size="17" font-weight="900" fill="#d9405a">= 36 ATP (laut Buch)</text></g></svg></figure></div>
+</section>
+
+<!-- =========================================================== GLOSSAR -->
+<section class="view" id="glossar">
+  <h1>Glossar</h1>
+  <input class="search" id="glSearch" type="search" placeholder="Begriff suchen …">
+  <div class="card" style="padding:6px 8px">
+  <dl class="gl">
+    <dt>Acetyl-CoA</dt><dd>C₂-Körper, an Coenzym A gebunden; entsteht bei der oxidativen Decarboxylierung aus Pyruvat und wird in den Citratzyklus eingeschleust.</dd>
+    <dt>ATP</dt><dd>Adenosintriphosphat; universeller, kurzfristiger Energieüberträger der Zelle. Bei der Spaltung zu ADP + Pᵢ werden ca. 30,6 kJ/mol frei.</dd>
+    <dt>ATP-Synthase</dt><dd>Enzymkomplex der inneren Mitochondrienmembran mit einem Protonenkanal; nutzt den Rückstrom von H⁺ in die Matrix zur ATP-Bildung.</dd>
+    <dt>Atmungskette</dt><dd>Elektronentransportkette aus Proteinkomplexen (I–IV) in der inneren Mitochondrienmembran; überträgt Elektronen von NADH + H⁺ und FADH₂ auf O₂ und baut dabei einen Protonengradienten auf.</dd>
+    <dt>Chemiosmotisches Modell</dt><dd>Modell, das die ATP-Bildung durch die Kopplung von Elektronentransport, Protonengradient und ATP-Synthase erklärt (Peter Mitchell, Nobelpreis 1978).</dd>
+    <dt>Citratzyklus</dt><dd>Kreisförmige Reaktionsfolge in der Matrix; baut den Acetylrest zu 2 CO₂ ab. Dabei entstehen pro Durchlauf 3 NADH + H⁺, 1 FADH₂ und 1 ATP. Auch: Tricarbonsäurezyklus.</dd>
+    <dt>Crista (Pl. Cristae)</dt><dd>Einstülpung der inneren Mitochondrienmembran; vergrößert die Fläche für Atmungskette und ATP-Synthasen.</dd>
+    <dt>Decarboxylierung</dt><dd>Abspaltung von CO₂ aus einem Molekül.</dd>
+    <dt>Effektor (allosterisch)</dt><dd>Molekül, das an ein allosterisches Zentrum eines Enzyms bindet und dessen Aktivität steigert (positiv) oder hemmt (negativ).</dd>
+    <dt>Endakzeptor</dt><dd>Letzter Elektronenempfänger einer Elektronentransportkette; in der Atmungskette O₂, das dabei zu H₂O reduziert wird.</dd>
+    <dt>FAD / FADH₂</dt><dd>Flavin-Adenin-Dinukleotid; Coenzym, das Elektronen und Protonen aufnimmt (FADH₂) und sie an Komplex II der Atmungskette abgibt.</dd>
+    <dt>Glykolyse</dt><dd>Abbau von Glucose zu 2 Pyruvat im Cytoplasma; netto 2 ATP und 2 NADH + H⁺; läuft ohne O₂ ab.</dd>
+    <dt>Intermembranraum</dt><dd>Raum zwischen äußerer und innerer Mitochondrienmembran; hier reichern sich die gepumpten Protonen an.</dd>
+    <dt>Matrix</dt><dd>Innenraum des Mitochondriums; Ort der oxidativen Decarboxylierung und des Citratzyklus.</dd>
+    <dt>NAD⁺ / NADH + H⁺</dt><dd>Nicotinamid-Adenin-Dinukleotid; Coenzym, das beim Glucoseabbau 2 e⁻ und 2 H⁺ aufnimmt und sie an Komplex I der Atmungskette abgibt.</dd>
+    <dt>Negative Rückkopplung</dt><dd>Das Endprodukt einer Stoffwechselkette hemmt ein Enzym am Anfang dieser Kette (Endprodukthemmung).</dd>
+    <dt>Oxidation / Reduktion</dt><dd>Abgabe / Aufnahme von Elektronen; laufen immer gekoppelt als Redoxreaktion ab.</dd>
+    <dt>Oxidative Decarboxylierung</dt><dd>Umwandlung von Pyruvat (C₃) in Acetyl-CoA (C₂) in der Matrix; dabei werden CO₂ und NADH + H⁺ gebildet. Enzym: Pyruvatdehydrogenase-Komplex.</dd>
+    <dt>Oxidative Phosphorylierung</dt><dd>ATP-Bildung an der ATP-Synthase, angetrieben durch den Protonengradienten, der durch die Oxidation von NADH + H⁺ und FADH₂ entsteht.</dd>
+    <dt>Phosphofructokinase (PFK)</dt><dd>Allosterisches Schlüsselenzym der Glykolyse; wird durch ATP und Citrat gehemmt und durch ADP aktiviert.</dd>
+    <dt>Protonengradient</dt><dd>Konzentrations- und Ladungsunterschied von H⁺ zwischen Intermembranraum (hoch) und Matrix (niedrig).</dd>
+    <dt>Pyruvat</dt><dd>C₃-Körper; Endprodukt der Glykolyse.</dd>
+    <dt>Reduktionsäquivalente</dt><dd>Mit Elektronen und Protonen beladene Coenzyme (NADH + H⁺, FADH₂), die Elektronen zur Atmungskette transportieren.</dd>
+    <dt>Substratkettenphosphorylierung</dt><dd>ATP-Bildung, bei der eine Phosphatgruppe direkt von einem Substratmolekül auf ADP übertragen wird (Glykolyse, Citratzyklus).</dd>
+    <dt>Wirkungsgrad</dt><dd>Anteil der in ATP gespeicherten Energie an der insgesamt freigesetzten Energie; bei der Zellatmung ca. 40 %, der Rest wird als Wärme frei.</dd>
+  </dl></div>
+</section>
+
+<!-- =========================================================== OPERATOREN -->
+<section class="view" id="operatoren">
+  <h1>Operatoren für die Klausur</h1>
+  <p>Operatoren sagen dir, <b>was</b> du tun sollst. Sie sind den drei Anforderungsbereichen (AFB) zugeordnet.</p>
+  <div class="card tbl-wrap"><table>
+    <tr><th>Operator</th><th>Was du tun sollst</th><th>AFB</th></tr>
+    <tr><td><b>nennen / angeben</b></td><td>Begriffe, Fakten oder Elemente ohne Erläuterung aufzählen</td><td>I</td></tr>
+    <tr><td><b>beschreiben</b></td><td>Sachverhalte (z. B. einen Diagrammverlauf) strukturiert und fachsprachlich in eigenen Worten wiedergeben – mit konkreten Werten, ohne Deutung</td><td>I–II</td></tr>
+    <tr><td><b>darstellen</b></td><td>Sachverhalte, Zusammenhänge oder Abläufe strukturiert wiedergeben, auch als Schema oder Tabelle</td><td>I–II</td></tr>
+    <tr><td><b>skizzieren / zeichnen</b></td><td>Sachverhalte grafisch vereinfacht und übersichtlich darstellen</td><td>I–II</td></tr>
+    <tr><td><b>erklären</b></td><td>einen Sachverhalt auf Regeln, Gesetzmäßigkeiten und Ursachen zurückführen</td><td>II</td></tr>
+    <tr><td><b>erläutern</b></td><td>einen Sachverhalt erklären und durch zusätzliche Informationen oder Beispiele verständlich machen</td><td>II</td></tr>
+    <tr><td><b>auswerten</b></td><td>Daten oder Ergebnisse in einen Zusammenhang stellen und daraus Schlussfolgerungen ziehen</td><td>II</td></tr>
+    <tr><td><b>analysieren</b></td><td>wichtige Bestandteile oder Eigenschaften gezielt herausarbeiten und ihre Zusammenhänge untersuchen</td><td>II</td></tr>
+    <tr><td><b>vergleichen</b></td><td>Gemeinsamkeiten und Unterschiede nach Kriterien herausarbeiten</td><td>II</td></tr>
+    <tr><td><b>begründen</b></td><td>einen Sachverhalt auf Gesetzmäßigkeiten bzw. kausale Zusammenhänge zurückführen</td><td>II</td></tr>
+    <tr><td><b>deuten</b></td><td>Sachverhalte in einen Erklärungszusammenhang bringen</td><td>II–III</td></tr>
+    <tr><td><b>Hypothese aufstellen</b></td><td>eine begründete, überprüfbare Vermutung formulieren</td><td>III</td></tr>
+    <tr><td><b>beurteilen</b></td><td>zu einem Sachverhalt ein selbstständiges, fachlich begründetes Urteil formulieren</td><td>III</td></tr>
+    <tr><td><b>Stellung nehmen</b></td><td>eine Aussage fachlich prüfen und auf dieser Grundlage eine eigene begründete Position formulieren</td><td>III</td></tr>
+    <tr><td><b>bewerten</b></td><td>einen Sachverhalt an Werten und Normen messen und ein begründetes Werturteil abgeben</td><td>III</td></tr>
+  </table>
+  <p class="src">Angelehnt an die Operatorenübersicht für das Fach Biologie (Abitur NRW); verbindlich ist die jeweils aktuelle Fassung des Ministeriums.</p></div>
+</section>
+
+<!-- =========================================================== IMPRESSUM -->
+<section class="view" id="impressum">
+  <h1>Impressum</h1>
+  <div class="card">
+    <h3>Angaben gemäß § 5 DDG und § 18 Abs. 1 MStV</h3>
+    <p>Patrick Hafner<br>Georgsplatz 10<br>50676 Köln</p>
+    <h3>Kontakt</h3>
+    <p>E-Mail: <a href="mailto:p.hafner@kas.schule.koeln">p.hafner@kas.schule.koeln</a></p>
+    <h3>Verantwortlich für den Inhalt</h3>
+    <p>Patrick Hafner, Anschrift wie oben.</p>
+    <h3>Hinweis zum Angebot</h3>
+    <p>Diese Seite ist ein privates, nicht kommerzielles Unterrichtsmaterial für den Biologieunterricht der Qualifikationsphase. Sie ist kein offizielles Angebot einer Schule. Es werden keine Waren oder Dienstleistungen angeboten.</p>
+    <h3>Haftung für Inhalte</h3>
+    <p>Die Inhalte wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. Werden Rechtsverletzungen oder fachliche Fehler bekannt, werden die betreffenden Inhalte umgehend entfernt oder korrigiert.</p>
+    <h3>Haftung für Links</h3>
+    <p>Diese Seite enthält gegebenenfalls Links zu externen Websites Dritter, auf deren Inhalte kein Einfluss besteht. Für diese fremden Inhalte ist stets der jeweilige Anbieter verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar. Bei Bekanntwerden von Rechtsverletzungen werden derartige Links umgehend entfernt.</p>
+    <h3>Urheberrecht</h3>
+    <p>Texte, Grafiken und Aufgaben auf dieser Seite wurden selbst erstellt. Verweise auf das Schulbuch „Biologie heute SII“ (Westermann) beziehen sich auf Seitenzahlen; Inhalte des Buches werden hier nicht wiedergegeben. Die Nutzung der Materialien im Unterricht ist ausdrücklich erwünscht.</p>
+  </div>
+</section>
+
+<!-- =========================================================== DATENSCHUTZ -->
+<section class="view" id="datenschutz">
+  <h1>Datenschutzerklärung</h1>
+  <div class="card">
+    <h3>1. Verantwortlicher</h3>
+    <p>Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO):<br>Patrick Hafner, Georgsplatz 10, 50676 Köln<br>E-Mail: <a href="mailto:p.hafner@kas.schule.koeln">p.hafner@kas.schule.koeln</a></p>
+
+    <h3>2. Grundsatz</h3>
+    <p>Diese Website erhebt selbst keine personenbezogenen Daten. Es gibt keine Anmeldung, kein Kontaktformular, keine Kommentarfunktion, keine Analyse- oder Tracking-Werkzeuge, keine Werbung und keine eingebundenen Inhalte von Drittanbietern wie externe Schriftarten, Videos oder Social-Media-Plugins.</p>
+
+    <h3>3. Hosting über GitHub Pages</h3>
+    <p>Diese Website wird über den Dienst <b>GitHub Pages</b> bereitgestellt. Anbieter ist die GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der Seite verarbeitet GitHub technisch notwendige Daten, insbesondere Ihre IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Seite sowie Informationen zu Browser und Betriebssystem (Server-Logfiles). Dies ist erforderlich, um die Website auszuliefern und die Sicherheit des Dienstes zu gewährleisten.</p>
+    <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse besteht in der sicheren und zuverlässigen Bereitstellung dieses Unterrichtsmaterials. Dabei kann eine Übermittlung von Daten in die USA stattfinden. GitHub ist unter dem EU-US Data Privacy Framework zertifiziert. Auf die Verarbeitung durch GitHub hat der Verantwortliche keinen Einfluss. Weitere Informationen finden Sie in der Datenschutzerklärung von GitHub: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener" target="_blank">GitHub General Privacy Statement</a>.</p>
+
+    <h3>4. Lokale Speicherung im Browser</h3>
+    <p>Wenn Sie eine Stunde als „erledigt“ markieren, wird diese Information ausschließlich lokal im Speicher Ihres Browsers abgelegt (Local Storage). Sie wird nicht an den Verantwortlichen oder Dritte übertragen und dient nur der Anzeige Ihres Lernfortschritts auf diesem Gerät. Sie können diese Daten jederzeit löschen, indem Sie die Website-Daten in Ihrem Browser entfernen. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG, weil die Speicherung für die von Ihnen ausdrücklich gewünschte Funktion unbedingt erforderlich ist. Cookies werden nicht verwendet.</p>
+
+    <h3>5. Externe Links</h3>
+    <p>Diese Seite enthält einen Link zur Datenschutzerklärung von GitHub. Erst wenn Sie einen externen Link anklicken, werden Daten an den jeweiligen Anbieter übertragen.</p>
+
+    <h3>6. Ihre Rechte</h3>
+    <p>Sie haben nach der DSGVO das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch gegen die Verarbeitung (Art. 21). Wenden Sie sich dazu an die oben genannte Kontaktadresse.</p>
+    <p>Außerdem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO). Zuständig ist: Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW), Kavalleriestraße 2–4, 40213 Düsseldorf, <a href="https://www.ldi.nrw.de" rel="noopener" target="_blank">www.ldi.nrw.de</a>.</p>
+
+    <h3>7. Stand</h3>
+    <p>November 2026</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  Unterrichtsreihe „Keine Power ohne Nahrung“ · Biologie Q1 GK · <a href="#impressum">Impressum</a> · <a href="#datenschutz">Datenschutz</a>
+</footer>
+
+<script>
+window.QUIZ = {
+ s1:[
+  {q:"Wo findet die Glykolyse statt?",a:["in der Matrix","im Cytoplasma","an der inneren Mitochondrienmembran","im Intermembranraum"],c:1,e:"Die Glykolyse läuft im Cytoplasma ab – deshalb können auch Zellen ohne Mitochondrien sie durchführen."},
+  {q:"Welche Funktion haben die Cristae?",a:["Sie vergrößern die Fläche der inneren Membran für die Atmungskette.","Sie speichern Glucose.","Sie bilden die Ribosomen."],c:0,e:"Mehr Membranfläche = mehr Platz für Atmungskettenkomplexe und ATP-Synthasen."},
+  {q:"ATP ist …",a:["ein langfristiger Energiespeicher wie Fett.","ein universeller, kurzfristiger Energieüberträger.","ein Enzym, das Glucose abbaut."],c:1,e:"ATP wird ständig auf- und abgebaut – eher Währung als Sparbuch."},
+  {q:"Welche Produkte entstehen laut Bruttogleichung der Zellatmung?",a:["CO₂ und H₂O","O₂ und Glucose","Pyruvat und O₂"],c:0,e:"C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O"}],
+ s2:[
+  {q:"Oxidation bedeutet …",a:["Aufnahme von Elektronen","Abgabe von Elektronen","immer eine Reaktion mit Sauerstoff"],c:1,e:"Merkhilfe: OIL RIG – Oxidation Is Loss, Reduction Is Gain (of electrons)."},
+  {q:"Welche Oxidationszahl hat C im CO₂?",a:["0","+II","+IV","−IV"],c:2,e:"x + 2·(−2) = 0 → x = +4. In Glucose hat C im Mittel 0 – also wird C oxidiert."},
+  {q:"Wenn aus NAD⁺ NADH + H⁺ wird, wird NAD⁺ …",a:["oxidiert","reduziert","phosphoryliert"],c:1,e:"NAD⁺ nimmt Elektronen auf → Reduktion."},
+  {q:"Substratkettenphosphorylierung bedeutet:",a:["Eine Phosphatgruppe wird direkt von einem Substratmolekül auf ADP übertragen.","ATP wird mithilfe eines Protonengradienten gebildet.","ATP wird zu ADP abgebaut."],c:0,e:"Das passiert in der Glykolyse und im Citratzyklus."}],
+ s3:[
+  {q:"Wie viele ATP werden in der Glykolyse investiert?",a:["1","2","4"],c:1,e:"Zwei ATP in der Phase der Energieinvestition."},
+  {q:"Wie hoch ist der Netto-ATP-Gewinn der Glykolyse pro Glucose?",a:["2","4","36"],c:0,e:"4 gebildet − 2 investiert = 2 netto."},
+  {q:"Was ist das Endprodukt der Glykolyse?",a:["Acetyl-CoA","Pyruvat","CO₂"],c:1,e:"Zwei Moleküle Pyruvat (C₃) pro Glucose."},
+  {q:"Benötigt die Glykolyse Sauerstoff?",a:["Ja","Nein"],c:1,e:"Sie läuft aerob wie anaerob ab – braucht aber NAD⁺."}],
+ s4:[
+  {q:"Bei der oxidativen Decarboxylierung entsteht aus Pyruvat …",a:["Acetyl-CoA, CO₂ und NADH + H⁺","Citrat und ATP","Glucose"],c:0,e:"Ein C-Atom wird als CO₂ abgespalten, der C₂-Rest an Coenzym A gebunden."},
+  {q:"Welches Molekül nimmt den Acetylrest im Citratzyklus auf?",a:["Oxalacetat","Citrat","Pyruvat"],c:0,e:"C₂ + C₄ (Oxalacetat) → C₆ (Citrat)."},
+  {q:"Wie oft läuft der Citratzyklus pro Glucose-Molekül ab?",a:["einmal","zweimal","sechsmal"],c:1,e:"Aus einer Glucose entstehen zwei Pyruvat bzw. zwei Acetyl-CoA."},
+  {q:"Welche Aussage trifft zu?",a:["Im Citratzyklus wird viel ATP gebildet.","Im Citratzyklus entstehen vor allem Reduktionsäquivalente.","Im Citratzyklus wird O₂ verbraucht."],c:1,e:"6 NADH + H⁺ und 2 FADH₂, aber nur 2 ATP pro Glucose."}],
+ s5:[
+  {q:"Wie viele NADH + H⁺ entstehen pro Glucose bis zum Ende des Citratzyklus?",a:["2","8","10","12"],c:2,e:"2 (Glykolyse) + 2 (ox. Decarboxylierung) + 6 (Citratzyklus) = 10."},
+  {q:"Wo findet man das ¹⁸O aus markiertem Sauerstoff (¹⁸O₂) wieder?",a:["im CO₂","im Wasser","in der Glucose"],c:1,e:"O₂ nimmt am Ende der Atmungskette Elektronen und Protonen auf → H₂O."},
+  {q:"Woher stammen die O-Atome des ausgeatmeten CO₂?",a:["aus dem eingeatmeten O₂","aus der Glucose und aus Wasser","aus ATP"],c:1,e:"Im Citratzyklus wird Wasser eingebaut – deshalb steht 6 H₂O auf der Eduktseite der Bilanz."},
+  {q:"Wie viel ATP wurde bis zum Ende des Citratzyklus pro Glucose gebildet?",a:["2","4","36"],c:1,e:"2 (Glykolyse, netto) + 2 (Citratzyklus) = 4."}],
+ s6:[
+  {q:"Wo liegt die Atmungskette?",a:["in der äußeren Mitochondrienmembran","in der inneren Mitochondrienmembran","frei in der Matrix"],c:1,e:"Auf den Cristae der inneren Membran."},
+  {q:"Welche Komplexe pumpen Protonen?",a:["I, III und IV","nur II","alle vier"],c:0,e:"Komplex II pumpt keine Protonen – deshalb liefert FADH₂ weniger ATP."},
+  {q:"Was ist der Endakzeptor der Elektronen?",a:["NAD⁺","O₂","CO₂"],c:1,e:"½ O₂ + 2 e⁻ + 2 H⁺ → H₂O"},
+  {q:"Die ATP-Synthase wird angetrieben durch …",a:["direkte Energieübertragung von NADH","den Rückstrom von H⁺ entlang des Gradienten","die Spaltung von Glucose"],c:1,e:"Chemiosmotisches Modell: Der Protonengradient ist der „Zwischenspeicher“."}],
+ s7:[
+  {q:"Cyanid blockiert Komplex IV. Was ist die Folge?",a:["Es wird mehr ATP gebildet.","Elektronenstau, kein Protonengradient, ATP-Mangel","Der O₂-Verbrauch steigt."],c:1,e:"Ohne Elektronenfluss pumpen die Komplexe keine Protonen mehr."},
+  {q:"Wie viele ATP entstehen laut Buch netto pro Glucose?",a:["4","32","36"],c:2,e:"38 gebildet − 2 für den Transport = 36. Neuere Werte liegen bei ca. 30–32."},
+  {q:"Warum liefert FADH₂ weniger ATP als NADH + H⁺?",a:["Es gibt seine Elektronen erst an Komplex II ab; Komplex I wird übersprungen.","FADH₂ hat keine Elektronen.","FADH₂ wird im Cytoplasma gebildet."],c:0,e:"Weniger gepumpte Protonen → weniger ATP."},
+  {q:"Wie hoch ist der Wirkungsgrad der Zellatmung ungefähr?",a:["ca. 10 %","ca. 40 %","ca. 90 %"],c:1,e:"36 · 30,6 kJ ≈ 1100 kJ von ca. 2870 kJ. Der Rest wird als Wärme frei."}],
+ s8:[
+  {q:"Was verlangt der Operator „erklären“?",a:["einen Sachverhalt auf Ursachen und Gesetzmäßigkeiten zurückführen","nur Fakten aufzählen","eine persönliche Meinung äußern"],c:0,e:"Erklären = Warum? Mit Fachwissen begründen."},
+  {q:"Ein Diagramm „beschreiben“ heißt:",a:["den Verlauf mit konkreten Werten in Worten wiedergeben","die Ursachen des Verlaufs nennen","das Ergebnis bewerten"],c:0,e:"Erst beschreiben, dann (in einer eigenen Aufgabe) erklären."},
+  {q:"Wie wirkt ATP auf die Phosphofructokinase?",a:["aktivierend","hemmend (negativer Effektor)","gar nicht"],c:1,e:"Viel ATP → weniger Glucoseabbau. Das spart Ressourcen."},
+  {q:"Negative Rückkopplung bedeutet:",a:["Das Endprodukt hemmt einen frühen Schritt seiner eigenen Bildung.","Das Endprodukt beschleunigt seine eigene Bildung.","Der Ausgangsstoff hemmt das Endprodukt."],c:0,e:"Beispiel: Citrat und ATP hemmen die PFK."}]
+};
+window.AK_TEXT = [
+ "Ausgangslage: Die innere Mitochondrienmembran trennt Intermembranraum (oben) und Matrix (unten). Sie enthält vier Proteinkomplexe und die ATP-Synthase. Klicke auf „Weiter“.",
+ "<span class='chip c-nadh'>NADH+H⁺</span> gibt zwei energiereiche Elektronen an <b>Komplex I</b> ab und wird dabei zu NAD⁺ oxidiert. NAD⁺ steht nun wieder für Glykolyse und Citratzyklus zur Verfügung.",
+ "Komplex I nutzt die frei werdende Energie, um <b>Protonen (H⁺) aus der Matrix in den Intermembranraum zu pumpen</b>. Die Elektronen wandern über den beweglichen Träger <b>Ubichinon (Q)</b> weiter zu Komplex III.",
+ "<span class='chip c-fad'>FADH₂</span> gibt seine Elektronen an <b>Komplex II</b> ab, der keine Protonen pumpt. Über Q gelangen auch diese Elektronen zu Komplex III. Deshalb liefert FADH₂ weniger ATP als NADH + H⁺.",
+ "<b>Komplex III</b> pumpt ebenfalls Protonen. Der kleine bewegliche Träger <b>Cytochrom c</b> bringt die Elektronen zu Komplex IV.",
+ "<b>Komplex IV</b> pumpt Protonen und überträgt die Elektronen auf den <b>Endakzeptor Sauerstoff</b>: ½ O₂ + 2 e⁻ + 2 H⁺ → H₂O. Ohne O₂ käme der gesamte Elektronenfluss zum Stillstand.",
+ "Im Intermembranraum ist nun die H⁺-Konzentration hoch (pH niedrig), in der Matrix niedrig. Da die innere Membran für Protonen undurchlässig ist, entsteht ein <b>Protonengradient</b> – ein Energiespeicher wie Wasser in einem Stausee.",
+ "Die Protonen strömen durch den Kanal der <b>ATP-Synthase</b> zurück in die Matrix. Dabei dreht sich ein Teil des Enzyms und verbindet ADP + Pᵢ zu <span class='chip c-atp'>ATP</span>. Das ist die <b>oxidative Phosphorylierung</b> – das chemiosmotische Modell nach Peter Mitchell."
+];
+</script>
+<script>(function(){
+  var STORE = document.body.getAttribute('data-store') || 'zellatmung';
+  function load(){ try{ return JSON.parse(localStorage.getItem(STORE)) || {}; }catch(e){ return {}; } }
+  function save(o){ try{ localStorage.setItem(STORE, JSON.stringify(o)); }catch(e){} }
+  var state = load();
+
+  /* ---------- Routing ---------- */
+  var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+  function show(){
+    var id = (location.hash || '#start').slice(1).split('?')[0];
+    if(!document.getElementById(id) || !document.getElementById(id).classList.contains('view')) id = 'start';
+    views.forEach(function(v){ v.classList.toggle('on', v.id === id); });
+    document.querySelectorAll('.nav a').forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#'+id); });
+    var active = document.querySelector('.nav a.on');
+    if(active && active.scrollIntoView){ try{ active.scrollIntoView({block:'nearest',inline:'center'}); }catch(e){} }
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange', show);
+
+  /* ---------- Progress ---------- */
+  function paintDone(){
+    var done = state.done || {};
+    document.querySelectorAll('[data-lesson]').forEach(function(el){
+      el.classList.toggle('done', !!done[el.getAttribute('data-lesson')]);
+    });
+    document.querySelectorAll('.donebtn').forEach(function(b){
+      var d = !!done[b.getAttribute('data-id')];
+      b.classList.toggle('isdone', d);
+      b.textContent = d ? '✓ Stunde erledigt' : 'Stunde als erledigt markieren';
+    });
+    var n = Object.keys(done).filter(function(k){return done[k];}).length;
+    var p = document.getElementById('progress');
+    if(p){ p.textContent = n + ' von 9 Stunden erledigt'; }
+    var bar = document.getElementById('pbar');
+    if(bar){ bar.style.width = (n/9*100)+'%'; }
+  }
+  document.addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('.donebtn');
+    if(!b) return;
+    state.done = state.done || {};
+    var id = b.getAttribute('data-id');
+    state.done[id] = !state.done[id];
+    save(state); paintDone();
+  });
+
+  /* ---------- Quiz ---------- */
+  var QUIZ = window.QUIZ || {};
+  document.querySelectorAll('.quiz[data-quiz]').forEach(function(box){
+    var qs = QUIZ[box.getAttribute('data-quiz')] || [];
+    var right = 0, answered = 0;
+    var sc = document.createElement('p'); sc.className = 'score';
+    qs.forEach(function(q, qi){
+      var d = document.createElement('div'); d.className = 'qq';
+      var p = document.createElement('p'); p.innerHTML = (qi+1) + '. ' + q.q; d.appendChild(p);
+      var fb = document.createElement('div'); fb.className = 'fb';
+      var done = false;
+      q.a.forEach(function(opt, oi){
+        var b = document.createElement('button'); b.className = 'opt'; b.type = 'button'; b.innerHTML = opt;
+        b.addEventListener('click', function(){
+          if(done) return; done = true; answered++;
+          var ok = oi === q.c;
+          if(ok) right++;
+          b.classList.add(ok ? 'right' : 'wrong');
+          d.querySelectorAll('button.opt')[q.c].classList.add('right');
+          fb.innerHTML = (ok ? '✅ <b>Richtig!</b> ' : '❌ <b>Nicht ganz.</b> ') + (q.e || '');
+          fb.classList.add('show');
+          sc.textContent = 'Ergebnis: ' + right + ' von ' + qs.length + ' richtig' + (answered === qs.length ? (right === qs.length ? ' – stark! 🎉' : ' – schau dir die Erklärungen noch einmal an.') : '');
+        });
+        d.appendChild(b);
+      });
+      d.appendChild(fb); box.appendChild(d);
+    });
+    box.appendChild(sc);
+  });
+
+  /* ---------- Checker (Lückentabellen) ---------- */
+  function norm(s){ return String(s).trim().toLowerCase().replace(',', '.').replace(/\s+/g,' '); }
+  document.querySelectorAll('.checker').forEach(function(c){
+    var out = c.querySelector('.check-out');
+    var btn = c.querySelector('.check-btn');
+    var rst = c.querySelector('.reset-btn');
+    if(btn) btn.addEventListener('click', function(){
+      var f = c.querySelectorAll('[data-answer]'), ok = 0;
+      f.forEach(function(i){
+        var alts = i.getAttribute('data-answer').split('|').map(norm);
+        var good = alts.indexOf(norm(i.value)) > -1;
+        i.classList.toggle('right', good); i.classList.toggle('wrong', !good);
+        if(good) ok++;
+      });
+      if(out) out.textContent = ok + ' von ' + f.length + ' richtig' + (ok === f.length ? ' – perfekt! Übertrage das Ergebnis ins Heft.' : ' – rot markierte Felder noch einmal prüfen.');
+    });
+    if(rst) rst.addEventListener('click', function(){
+      c.querySelectorAll('[data-answer]').forEach(function(i){ i.value=''; i.classList.remove('right','wrong'); });
+      if(out) out.textContent = '';
+    });
+  });
+
+  /* ---------- Übersichtsschema ---------- */
+  var rng = document.getElementById('stageRange');
+  var STAGE_NAMES = ['','Stunde 1: Zelle & Mitochondrium','Stunde 2: Energieträger (Legende)','Stunde 3: Glykolyse','Stunde 4: Oxidative Decarboxylierung & Citratzyklus','Stunde 5: Zwischenbilanz','Stunde 6: Atmungskette','Stunde 7: Gesamtbilanz'];
+  function setStage(n){
+    if(!rng) return;
+    rng.value = n;
+    document.querySelectorAll('#schemaSvg .st').forEach(function(g){
+      g.classList.toggle('off', +g.getAttribute('data-stage') > n);
+    });
+    var l = document.getElementById('stageLabel'); if(l) l.textContent = STAGE_NAMES[n] || '';
+  }
+  if(rng){ rng.addEventListener('input', function(){ setStage(+rng.value); }); setStage(+rng.value); }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('[data-stage-link]');
+    if(a){ setStage(+a.getAttribute('data-stage-link')); }
+  });
+
+  /* ---------- Atmungskette Schritt für Schritt ---------- */
+  var AK = window.AK_TEXT || [];
+  var akStep = 0;
+  function paintAK(){
+    document.querySelectorAll('#akSvg .ak-step').forEach(function(g){
+      var s = +g.getAttribute('data-step');
+      g.classList.toggle('on', s <= akStep);
+      g.classList.toggle('now', s === akStep && akStep > 0 && akStep < 7);
+    });
+    var head = document.getElementById('akHead');
+    if(head) head.classList.toggle('spin', akStep >= 7);
+    var t = document.getElementById('akText');
+    if(t) t.innerHTML = '<b>Schritt ' + akStep + ' von ' + (AK.length-1) + ':</b> ' + (AK[akStep] || '');
+  }
+  var nx = document.getElementById('akNext'), pv = document.getElementById('akPrev'), rs = document.getElementById('akReset');
+  if(nx){
+    nx.addEventListener('click', function(){ if(akStep < AK.length-1){ akStep++; paintAK(); } });
+    pv.addEventListener('click', function(){ if(akStep > 0){ akStep--; paintAK(); } });
+    rs.addEventListener('click', function(){ akStep = 0; paintAK(); });
+    paintAK();
+  }
+
+  /* ---------- Glossar-Suche ---------- */
+  var gs = document.getElementById('glSearch');
+  if(gs) gs.addEventListener('input', function(){
+    var q = gs.value.trim().toLowerCase();
+    document.querySelectorAll('dl.gl dt').forEach(function(dt){
+      var dd = dt.nextElementSibling;
+      var hit = !q || (dt.textContent + ' ' + dd.textContent).toLowerCase().indexOf(q) > -1;
+      dt.style.display = hit ? '' : 'none'; dd.style.display = hit ? '' : 'none';
+    });
+  });
+
+  paintDone(); show();
+})();
+</script>
+</body>
+</html>
